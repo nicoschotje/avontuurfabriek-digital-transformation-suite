@@ -1,0 +1,477 @@
+<div class="app-container">
+<!-- HEADER -->
+<header class="header">
+<div class="flex items-center justify-between flex-wrap gap-4">
+<div class="flex items-center gap-3">
+<div class="logo">AF</div>
+<div>
+<h1 class="text-lg font-bold text-white">Avontuurfabriek</h1>
+<p class="text-xs text-gray-400">Communication Hub &#8212; Team Connect</p>
+</div>
+</div>
+<div class="flex items-center gap-4 flex-wrap">
+<div class="timezone-box">
+<span class="text-xs text-gray-400">PH Filipijnen</span>
+<span class="text-lg font-bold text-white" id="phTime">--:--</span>
+</div>
+<div class="timezone-box">
+<span class="text-xs text-gray-400">NL Nederland</span>
+<span class="text-lg font-bold text-white" id="nlTime">--:--</span>
+</div>
+<div class="status-pill online">&#128994; 2 Online</div>
+<div class="notif-bell">&#128276;<span class="notif-badge">5</span></div>
+</div>
+</div>
+</header>
+
+<!-- TAB NAVIGATION -->
+<nav class="tab-nav">
+<button class="tab-btn active" data-tab="verslag">&#128203; Dagelijks Verslag</button>
+<button class="tab-btn" data-tab="berichten">&#128172; Berichten</button>
+<button class="tab-btn" data-tab="taken">&#9989; Taken</button>
+<button class="tab-btn" data-tab="documenten">&#128193; Documenten</button>
+<button class="tab-btn" data-tab="agenda">&#128197; Agenda</button>
+</nav>
+
+<main class="main-content">
+<!-- LEFT SIDEBAR - TEAM -->
+<aside class="team-sidebar">
+<h3 class="text-sm font-semibold text-gray-400 mb-3 uppercase tracking-wider">Team Directory</h3>
+<div class="team-member">
+<div class="avatar owner">MO</div>
+<div class="flex-1">
+<p class="text-sm font-semibold text-white">Mike Olivier</p>
+<p class="text-xs text-gray-400">Eigenaar &bull; Filipijnen</p>
+</div>
+<span class="status-dot online"></span>
+</div>
+<div class="team-member">
+<div class="avatar manager">JD</div>
+<div class="flex-1">
+<p class="text-sm font-semibold text-white">Jan de Bruin</p>
+<p class="text-xs text-gray-400">Manager &bull; Nederland</p>
+</div>
+<span class="status-dot online"></span>
+</div>
+<div class="team-member">
+<div class="avatar ops">SV</div>
+<div class="flex-1">
+<p class="text-sm font-semibold text-white">Sophie Visser</p>
+<p class="text-xs text-gray-400">Operations Lead</p>
+</div>
+<span class="status-dot offline"></span>
+</div>
+<div class="team-member">
+<div class="avatar events">LB</div>
+<div class="flex-1">
+<p class="text-sm font-semibold text-white">Lars Bakker</p>
+<p class="text-xs text-gray-400">Events Coordinator</p>
+</div>
+<span class="status-dot offline"></span>
+</div>
+<div class="team-member">
+<div class="avatar marketing">AK</div>
+<div class="flex-1">
+<p class="text-sm font-semibold text-white">Anna Kuiper</p>
+<p class="text-xs text-gray-400">Marketing Manager</p>
+</div>
+<span class="status-dot away"></span>
+</div>
+<div class="team-member">
+<div class="avatar maint">PH</div>
+<div class="flex-1">
+<p class="text-sm font-semibold text-white">Peter Hendriks</p>
+<p class="text-xs text-gray-400">Technisch Beheer</p>
+</div>
+<span class="status-dot offline"></span>
+</div>
+<div class="sidebar-section mt-6">
+<h3 class="text-sm font-semibold text-gray-400 mb-2 uppercase tracking-wider">Snelle Acties</h3>
+<button class="action-btn">&#128172; Nieuw Bericht</button>
+<button class="action-btn">&#128203; Dagverslag Indienen</button>
+<button class="action-btn">&#128193; Document Uploaden</button>
+</div>
+</aside>
+
+<!-- CONTENT AREA -->
+<div class="content-area">
+
+<!-- TAB 1: DAGELIJKS VERSLAG -->
+<section class="tab-panel active" id="tab-verslag">
+<div class="panel-header">
+<h2 class="text-xl font-bold text-white">Dagelijks Verslag</h2>
+<span class="text-sm text-gray-400">Dinsdag 18 Februari 2026</span>
+</div>
+
+<!-- Latest Report -->
+<div class="report-card latest">
+<div class="report-header">
+<div class="flex items-center gap-3">
+<div class="avatar manager">JD</div>
+<div>
+<p class="text-sm font-semibold text-white">Jan de Bruin</p>
+<p class="text-xs text-gray-400">Manager &bull; Vandaag 17:45 CET</p>
+</div>
+</div>
+<span class="report-badge new">Nieuw</span>
+</div>
+<div class="report-body">
+<div class="report-field">
+<label>Omzet Vandaag</label>
+<p class="text-green-400 font-bold text-lg">&euro;18.750</p>
+</div>
+<div class="report-field">
+<label>Bijzonderheden</label>
+<p>Drukke dag met 8 boekingen. Accenture teambuilding (85 pax) was groot succes. LED Karten populairste activiteit. Nieuwe Escape Room 'De Kluis' voor het eerst volledig volgeboekt.</p>
+</div>
+<div class="report-field">
+<label>Problemen / Issues</label>
+<p>Bowlingbaan 3 heeft storing - technicus komt morgen. Airco in Feestzaal Caribean maakt geluid, Peter kijkt ernaar.</p>
+</div>
+<div class="report-field">
+<label>Personeelszaken</label>
+<p>Sophie terug van verlof. 2 nieuwe parttime medewerkers beginnen volgende week. Teamvergadering gepland voor vrijdag 10:00.</p>
+</div>
+<div class="report-field">
+<label>Morgen Verwacht</label>
+<p>3 boekingen: ING corporate (120 pax), kinderfeestje (12 pax), particulier groep (25 pax). Verwachte omzet &euro;15.200.</p>
+</div>
+</div>
+<div class="report-reactions">
+<button class="reaction-btn active">&#9989; Gezien</button>
+<button class="reaction-btn">&#128172; Vraag</button>
+<button class="reaction-btn">&#9888;&#65039; Actie Nodig</button>
+</div>
+</div>
+
+<!-- Previous Reports -->
+<div class="report-card">
+<div class="report-header">
+<div class="flex items-center gap-3">
+<div class="avatar manager">JD</div>
+<div>
+<p class="text-sm font-semibold text-white">Jan de Bruin</p>
+<p class="text-xs text-gray-400">Maandag 17 Feb &bull; 18:12 CET</p>
+</div>
+</div>
+<span class="report-badge seen">&#9989; Gezien</span>
+</div>
+<div class="report-body collapsed">
+<div class="report-field">
+<label>Omzet</label>
+<p class="text-green-400 font-bold">&euro;12.340</p>
+</div>
+<div class="report-field">
+<label>Samenvatting</label>
+<p>Rustige maandag. 4 boekingen. Regulier onderhoud aan LED karts uitgevoerd. Offerte verstuurd naar Philips voor teambuilding event in maart.</p>
+</div>
+</div>
+</div>
+
+<div class="report-card">
+<div class="report-header">
+<div class="flex items-center gap-3">
+<div class="avatar manager">JD</div>
+<div>
+<p class="text-sm font-semibold text-white">Jan de Bruin</p>
+<p class="text-xs text-gray-400">Zondag 16 Feb &bull; 20:30 CET</p>
+</div>
+</div>
+<span class="report-badge seen">&#9989; Gezien</span>
+</div>
+<div class="report-body collapsed">
+<div class="report-field">
+<label>Omzet</label>
+<p class="text-green-400 font-bold">&euro;22.100</p>
+</div>
+<div class="report-field">
+<label>Samenvatting</label>
+<p>Topdag! Vrijgezellenfeest (45 pax) + 3 kinderfeestjes + corporate groep Shell. Alle activiteiten bezet van 10:00-21:00.</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- TAB 2: BERICHTEN -->
+<section class="tab-panel" id="tab-berichten">
+<div class="panel-header">
+<h2 class="text-xl font-bold text-white">Berichten</h2>
+<div class="msg-filters">
+<button class="filter-btn active">Alle</button>
+<button class="filter-btn">Urgent</button>
+<button class="filter-btn">Financieel</button>
+<button class="filter-btn">Personeel</button>
+</div>
+</div>
+
+<div class="message-thread">
+<div class="msg-item urgent">
+<div class="flex items-center gap-3 mb-2">
+<div class="avatar manager">JD</div>
+<div class="flex-1">
+<p class="text-sm font-semibold text-white">Jan de Bruin</p>
+<p class="text-xs text-gray-400">Vandaag 16:30 CET</p>
+</div>
+<span class="msg-tag urgent">Urgent</span>
+</div>
+<p class="msg-text">@Mike - Bowlingbaan 3 storing is erger dan verwacht. Technicus zegt mogelijk 2 dagen reparatie + onderdeel bestellen (&euro;850). Goedkeuring nodig. Zullen we dit weekend baan 3 sluiten?</p>
+<div class="msg-actions">
+<button class="msg-action-btn">&#128172; Reageer</button>
+<button class="msg-action-btn">&#128204; Pin</button>
+<button class="msg-action-btn read">&#9989; Gelezen</button>
+</div>
+</div>
+
+<div class="msg-item">
+<div class="flex items-center gap-3 mb-2">
+<div class="avatar marketing">AK</div>
+<div class="flex-1">
+<p class="text-sm font-semibold text-white">Anna Kuiper</p>
+<p class="text-xs text-gray-400">Vandaag 14:15 CET</p>
+</div>
+<span class="msg-tag marketing">Marketing</span>
+</div>
+<p class="msg-text">Social media rapport februari: Instagram +340 volgers, TikTok video LED Karten heeft 45K views! Zullen we investeren in gesponsorde content voor maart?</p>
+<div class="msg-actions">
+<button class="msg-action-btn">&#128172; Reageer</button>
+<button class="msg-action-btn">&#128204; Pin</button>
+</div>
+</div>
+
+<div class="msg-item">
+<div class="flex items-center gap-3 mb-2">
+<div class="avatar events">LB</div>
+<div class="flex-1">
+<p class="text-sm font-semibold text-white">Lars Bakker</p>
+<p class="text-xs text-gray-400">Vandaag 11:00 CET</p>
+</div>
+<span class="msg-tag events">Events</span>
+</div>
+<p class="msg-text">Offerte aanvraag van Rabobank voor 200 personen teambuilding in april. Mix &amp; Deal: LED Karten + Lasergame + Escape Room + BBQ. Budget &euro;95 p.p. Zal ik offerte uitwerken?</p>
+<div class="msg-actions">
+<button class="msg-action-btn">&#128172; Reageer</button>
+<button class="msg-action-btn">&#128204; Pin</button>
+</div>
+</div>
+
+<div class="msg-item pinned">
+<div class="flex items-center gap-3 mb-2">
+<div class="avatar owner">MO</div>
+<div class="flex-1">
+<p class="text-sm font-semibold text-white">Mike Olivier</p>
+<p class="text-xs text-gray-400">Gisteren 08:30 PHT</p>
+</div>
+<span class="msg-tag pinned">&#128204; Vastgepind</span>
+</div>
+<p class="msg-text">Team, ik heb de jaarplannen voor 2026 bijgewerkt. Focus Q1: bezettingsgraad naar 85%, nieuwe Escape Room lanceren, en website upgrade. Laten we dit bespreken in de teamcall van vrijdag.</p>
+</div>
+</div>
+
+<!-- Message Input -->
+<div class="msg-input-area">
+<div class="flex items-center gap-3">
+<div class="avatar owner">MO</div>
+<input type="text" class="msg-input" placeholder="Typ een bericht aan het team...">
+<button class="send-btn">Verstuur</button>
+</div>
+</div>
+</section>
+
+<!-- TAB 3: TAKEN -->
+<section class="tab-panel" id="tab-taken">
+<div class="panel-header">
+<h2 class="text-xl font-bold text-white">Taken Board</h2>
+<button class="add-task-btn">+ Nieuwe Taak</button>
+</div>
+<div class="kanban-board">
+<div class="kanban-col">
+<div class="kanban-header todo"><span class="kanban-dot todo"></span> Te Doen <span class="kanban-count">4</span></div>
+<div class="kanban-card high">
+<p class="task-title">Bowlingbaan 3 reparatie</p>
+<p class="task-desc">Onderdeel bestellen en technicus inplannen</p>
+<div class="task-meta"><span class="task-assignee">PH</span><span class="task-due overdue">19 Feb</span><span class="priority high">Hoog</span></div>
+</div>
+<div class="kanban-card normal">
+<p class="task-title">Offerte Rabobank uitwerken</p>
+<p class="task-desc">200 pax teambuilding april, budget &euro;95 p.p.</p>
+<div class="task-meta"><span class="task-assignee">LB</span><span class="task-due">21 Feb</span><span class="priority normal">Normaal</span></div>
+</div>
+<div class="kanban-card normal">
+<p class="task-title">Website audit rapport</p>
+<p class="task-desc">Huidige site analyseren voor redesign</p>
+<div class="task-meta"><span class="task-assignee">AK</span><span class="task-due">25 Feb</span><span class="priority normal">Normaal</span></div>
+</div>
+<div class="kanban-card low">
+<p class="task-title">Foto's activiteiten updaten</p>
+<p class="task-desc">Nieuwe foto's LED Karten en Escape Room</p>
+<div class="task-meta"><span class="task-assignee">AK</span><span class="task-due">28 Feb</span><span class="priority low">Laag</span></div>
+</div>
+</div>
+<div class="kanban-col">
+<div class="kanban-header progress"><span class="kanban-dot progress"></span> Bezig <span class="kanban-count">3</span></div>
+<div class="kanban-card critical">
+<p class="task-title">Airco Feestzaal reparatie</p>
+<p class="task-desc">Peter checkt geluidsprobleem</p>
+<div class="task-meta"><span class="task-assignee">PH</span><span class="task-due">18 Feb</span><span class="priority critical">Kritiek</span></div>
+</div>
+<div class="kanban-card high">
+<p class="task-title">Nieuwe medewerkers onboarding</p>
+<p class="task-desc">2 parttime starters volgende week</p>
+<div class="task-meta"><span class="task-assignee">SV</span><span class="task-due">24 Feb</span><span class="priority high">Hoog</span></div>
+</div>
+<div class="kanban-card normal">
+<p class="task-title">Social media campagne maart</p>
+<p class="task-desc">Content planning en budget voorstel</p>
+<div class="task-meta"><span class="task-assignee">AK</span><span class="task-due">1 Mrt</span><span class="priority normal">Normaal</span></div>
+</div>
+</div>
+<div class="kanban-col">
+<div class="kanban-header done"><span class="kanban-dot done"></span> Gereed <span class="kanban-count">3</span></div>
+<div class="kanban-card done">
+<p class="task-title">Escape Room 'De Kluis' lancering</p>
+<p class="task-desc">Volledig operationeel en volgeboekt</p>
+<div class="task-meta"><span class="task-assignee">JD</span><span class="task-due done">17 Feb</span></div>
+</div>
+<div class="kanban-card done">
+<p class="task-title">LED Kart onderhoud Q1</p>
+<p class="task-desc">Alle 12 karts gecontroleerd en goedgekeurd</p>
+<div class="task-meta"><span class="task-assignee">PH</span><span class="task-due done">16 Feb</span></div>
+</div>
+<div class="kanban-card done">
+<p class="task-title">Offerte Philips verstuurd</p>
+<p class="task-desc">Teambuilding maart, 80 personen</p>
+<div class="task-meta"><span class="task-assignee">LB</span><span class="task-due done">17 Feb</span></div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- TAB 4: DOCUMENTEN -->
+<section class="tab-panel" id="tab-documenten">
+<div class="panel-header">
+<h2 class="text-xl font-bold text-white">Documenten</h2>
+<button class="add-task-btn">+ Upload Document</button>
+</div>
+<div class="doc-grid">
+<div class="doc-folder">
+<div class="folder-icon financial">&#128176;</div>
+<h4 class="text-sm font-semibold text-white mt-2">Financieel</h4>
+<p class="text-xs text-gray-400">12 bestanden</p>
+<div class="doc-list">
+<div class="doc-item"><span class="doc-type pdf">PDF</span><span>Jaarrekening 2025</span><span class="text-xs text-gray-500">2.4 MB</span></div>
+<div class="doc-item"><span class="doc-type xls">XLS</span><span>Maandrapport Jan 2026</span><span class="text-xs text-gray-500">890 KB</span></div>
+<div class="doc-item"><span class="doc-type pdf">PDF</span><span>BTW Aangifte Q4</span><span class="text-xs text-gray-500">1.1 MB</span></div>
+</div>
+</div>
+<div class="doc-folder">
+<div class="folder-icon personnel">&#128101;</div>
+<h4 class="text-sm font-semibold text-white mt-2">Personeel</h4>
+<p class="text-xs text-gray-400">8 bestanden</p>
+<div class="doc-list">
+<div class="doc-item"><span class="doc-type doc">DOC</span><span>Rooster Week 8</span><span class="text-xs text-gray-500">245 KB</span></div>
+<div class="doc-item"><span class="doc-type pdf">PDF</span><span>Contract Template</span><span class="text-xs text-gray-500">350 KB</span></div>
+<div class="doc-item"><span class="doc-type xls">XLS</span><span>Verlofoverzicht 2026</span><span class="text-xs text-gray-500">120 KB</span></div>
+</div>
+</div>
+<div class="doc-folder">
+<div class="folder-icon marketing">&#127912;</div>
+<h4 class="text-sm font-semibold text-white mt-2">Marketing</h4>
+<p class="text-xs text-gray-400">24 bestanden</p>
+<div class="doc-list">
+<div class="doc-item"><span class="doc-type img">IMG</span><span>LED Karten Foto's</span><span class="text-xs text-gray-500">15.2 MB</span></div>
+<div class="doc-item"><span class="doc-type pdf">PDF</span><span>Brochure 2026</span><span class="text-xs text-gray-500">8.7 MB</span></div>
+<div class="doc-item"><span class="doc-type doc">DOC</span><span>Social Media Plan</span><span class="text-xs text-gray-500">430 KB</span></div>
+</div>
+</div>
+<div class="doc-folder">
+<div class="folder-icon operations">&#9881;&#65039;</div>
+<h4 class="text-sm font-semibold text-white mt-2">Operations</h4>
+<p class="text-xs text-gray-400">15 bestanden</p>
+<div class="doc-list">
+<div class="doc-item"><span class="doc-type pdf">PDF</span><span>Veiligheidsprotocol</span><span class="text-xs text-gray-500">1.8 MB</span></div>
+<div class="doc-item"><span class="doc-type xls">XLS</span><span>Inventaris Februari</span><span class="text-xs text-gray-500">560 KB</span></div>
+<div class="doc-item"><span class="doc-type pdf">PDF</span><span>Onderhoudschema Q1</span><span class="text-xs text-gray-500">920 KB</span></div>
+</div>
+</div>
+<div class="doc-folder">
+<div class="folder-icon legal">&#9878;&#65039;</div>
+<h4 class="text-sm font-semibold text-white mt-2">Juridisch</h4>
+<p class="text-xs text-gray-400">6 bestanden</p>
+<div class="doc-list">
+<div class="doc-item"><span class="doc-type pdf">PDF</span><span>Huurcontract 2026</span><span class="text-xs text-gray-500">3.2 MB</span></div>
+<div class="doc-item"><span class="doc-type pdf">PDF</span><span>Verzekeringspolis</span><span class="text-xs text-gray-500">2.1 MB</span></div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- TAB 5: AGENDA -->
+<section class="tab-panel" id="tab-agenda">
+<div class="panel-header">
+<h2 class="text-xl font-bold text-white">Agenda</h2>
+<div class="flex items-center gap-2">
+<span class="tz-label">&#127477;&#127469; PHT</span>
+<span class="tz-label">&#127475;&#127473; CET</span>
+</div>
+</div>
+<div class="calendar-week">
+<div class="cal-day">
+<div class="cal-date">Ma<br><span class="text-lg font-bold">17</span></div>
+<div class="cal-events">
+<div class="cal-event corp">10:00 Particulier groep (18 pax)<br><span class="text-xs">Lasergame + Bowling</span></div>
+<div class="cal-event corp">14:00 Corporate - KPMG (45 pax)<br><span class="text-xs">Teambuilding Mix & Deal</span></div>
+</div>
+</div>
+<div class="cal-day today">
+<div class="cal-date">Di<br><span class="text-lg font-bold">18</span></div>
+<div class="cal-events">
+<div class="cal-event corp highlight">09:30 Accenture (85 pax)<br><span class="text-xs">Full Day Teambuilding</span></div>
+<div class="cal-event kids">13:00 Kinderfeestje (12 pax)<br><span class="text-xs">Lasergame + Fluorgolf</span></div>
+<div class="cal-event priv">16:00 Vrijgezellenfeest (22 pax)<br><span class="text-xs">LED Karten + BBQ</span></div>
+</div>
+</div>
+<div class="cal-day">
+<div class="cal-date">Wo<br><span class="text-lg font-bold">19</span></div>
+<div class="cal-events">
+<div class="cal-event corp">09:00 ING Corporate (120 pax)<br><span class="text-xs">Congres + Activiteiten</span></div>
+<div class="cal-event kids">14:00 Kinderfeestje (12 pax)<br><span class="text-xs">All-in-the-Game</span></div>
+<div class="cal-event priv">18:00 Particulier (25 pax)<br><span class="text-xs">Bowlen + Borrel</span></div>
+</div>
+</div>
+<div class="cal-day">
+<div class="cal-date">Do<br><span class="text-lg font-bold">20</span></div>
+<div class="cal-events">
+<div class="cal-event corp">10:00 Deloitte (60 pax)<br><span class="text-xs">LED Karten + Escape Room</span></div>
+<div class="cal-event maint">15:00 Onderhoud Bowlingbaan 3<br><span class="text-xs">Technicus reparatie</span></div>
+</div>
+</div>
+<div class="cal-day">
+<div class="cal-date">Vr<br><span class="text-lg font-bold">21</span></div>
+<div class="cal-events">
+<div class="cal-event team">10:00 Teamvergadering<br><span class="text-xs">Alle teamleads</span></div>
+<div class="cal-event corp">13:00 ABN AMRO (90 pax)<br><span class="text-xs">Teambuilding + Steengrillen</span></div>
+<div class="cal-event priv">19:00 Verjaardagsfeest (35 pax)<br><span class="text-xs">Feestzaal + DJ</span></div>
+</div>
+</div>
+</div>
+
+<!-- Team Leave -->
+<div class="leave-section mt-6">
+<h3 class="text-sm font-semibold text-gray-400 mb-3 uppercase">Verlof & Beschikbaarheid</h3>
+<div class="leave-grid">
+<div class="leave-item"><span class="text-sm text-white">Sophie Visser</span><span class="leave-status available">Beschikbaar</span></div>
+<div class="leave-item"><span class="text-sm text-white">Lars Bakker</span><span class="leave-status available">Beschikbaar</span></div>
+<div class="leave-item"><span class="text-sm text-white">Anna Kuiper</span><span class="leave-status partial">Halve dag (vrij middag)</span></div>
+<div class="leave-item"><span class="text-sm text-white">Peter Hendriks</span><span class="leave-status available">Beschikbaar</span></div>
+</div>
+</div>
+</section>
+
+</div><!-- /content-area -->
+</main>
+
+<!-- FOOTER -->
+<footer class="app-footer">
+<p class="text-xs text-gray-500">Avontuurfabriek Communication Hub v1.0 &bull; Powered by Digital Transformation Suite &bull; &copy; 2026</p>
+</footer>
+</div><!-- /app-container -->
