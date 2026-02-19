@@ -4,6 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AF-01 Premium Landing Pages — Avontuurfabriek</title>
+<meta name="description" content="De Avontuurfabriek Loosdrecht: 50+ indoor activiteiten. Mix & Deal configurator voor bedrijfsuitjes, teambuilding en feesten.">
+<meta property="og:title" content="De Avontuurfabriek - 50+ Indoor Activiteiten">
+<meta property="og:description" content="Stel je eigen arrangement samen met onze Mix & Deal configurator.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="nl_NL">
+<meta name="robots" content="index, follow">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
@@ -23,7 +29,7 @@ body{font-family:'Inter',sans-serif;background:linear-gradient(135deg,#0f172a 0%
 .hero-bg{background:linear-gradient(135deg,rgba(15,23,42,0.95),rgba(249,115,22,0.15)),linear-gradient(45deg,#0f172a,#1e293b);min-height:90vh}
 .activity-card{cursor:pointer}.activity-card:hover .act-overlay{opacity:1}
 .act-overlay{opacity:0;transition:opacity .3s}
-.filter-btn{padding:8px 18px;border-radius:999px;font-size:.75rem;font-weight:600;cursor:pointer;border:1px solid rgba(148,163,184,0.2);background:transparent;color:#94a3b8;transition:all .2s}
+.filter-btn{padding:8px 18px;border-radius:999px;font-size:.75rem;font-weight:600;cursor:pointer;border:1px solid rgba(148,163,184,0.2);background:transparent;color:#cbd5e1;transition:all .2s}
 .filter-btn.active,.filter-btn:hover{background:#f97316;color:#fff;border-color:#f97316}
 .step-card{position:relative;counter-increment:step}
 .step-card::before{content:counter(step);position:absolute;top:-12px;left:20px;width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,#f97316,#ea580c);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.75rem}
@@ -110,24 +116,24 @@ body{font-family:'Inter',sans-serif;background:linear-gradient(135deg,#0f172a 0%
 <label class="flex items-center gap-2 text-sm cursor-pointer"><input type="radio" name="type" value="particulier" class="accent-orange-500"> Particulier</label>
 <label class="flex items-center gap-2 text-sm cursor-pointer"><input type="radio" name="type" value="kids" class="accent-orange-500"> Kinderfeestje</label>
 </div></div>
-<div class="step-card glass p-5 pt-8"><h3 class="font-bold text-sm mb-2">Aantal personen</h3><input type="range" min="8" max="500" value="50" class="w-full accent-orange-500 mt-4" id="paxSlider" oninput="updatePax()"><p class="text-center text-2xl font-black text-orange-400 mt-2" id="paxCount">50</p><p class="text-center text-xs text-slate-500">personen</p></div>
-<div class="step-card glass p-5 pt-8"><h3 class="font-bold text-sm mb-2">Kies activiteiten</h3><div class="space-y-1.5 mt-3 text-xs">
-<label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="accent-orange-500" checked> LED Karten</label>
-<label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="accent-orange-500"> Lasergame</label>
-<label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="accent-orange-500" checked> Escape Room</label>
-<label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="accent-orange-500"> Bowlen</label>
-<label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="accent-orange-500"> Archery Tag</label>
+<div class="step-card glass p-5 pt-8"><h3 class="font-bold text-sm mb-2">Aantal personen</h3><input type="range" min="8" max="500" value="50" class="w-full accent-orange-500 mt-4" id="paxSlider" aria-label="Aantal personen" role="slider" oninput="updatePax()"><p class="text-center text-2xl font-black text-orange-400 mt-2" id="paxCount">50</p><p class="text-center text-xs text-slate-500">personen</p></div>
+<div class="step-card glass p-5 pt-8"><h3 class="font-bold text-sm mb-2">Kies activiteiten</h3><div id="actCheck"><div class="space-y-1.5 mt-3 text-xs">
+<label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="accent-orange-500" checked data-price="25"> LED Karten</label>
+<label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="accent-orange-500" data-price="20"> Lasergame</label>
+<label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="accent-orange-500" checked data-price="28"> Escape Room</label>
+<label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="accent-orange-500" data-price="15"> Bowlen</label>
+<label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="accent-orange-500" data-price="22"> Archery Tag</label>
 </div></div>
 <div class="step-card glass p-5 pt-8"><h3 class="font-bold text-sm mb-2">Horeca deal</h3><div class="space-y-1.5 mt-3 text-xs">
-<label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="food" class="accent-orange-500" checked> Borrelplank</label>
-<label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="food" class="accent-orange-500"> BBQ Arrangement</label>
-<label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="food" class="accent-orange-500"> Steengrillen</label>
-<label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="food" class="accent-orange-500"> Lunch pakket</label>
+<label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="food" class="accent-orange-500" checked data-price="12.50"> Borrelplank</label>
+<label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="food" class="accent-orange-500" data-price="22.50"> BBQ Arrangement</label>
+<label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="food" class="accent-orange-500" data-price="27.50"> Steengrillen</label>
+<label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="food" class="accent-orange-500" data-price="15"> Lunch pakket</label>
 </div></div>
 </div>
 <div class="glass p-6 flex flex-col sm:flex-row justify-between items-center gap-4 bg-orange-500/5 border-orange-500/20">
-<div><p class="text-sm text-slate-400">Geschatte prijs per persoon (incl. 9% BTW)</p><p class="text-4xl font-black text-orange-400">&#8364;67,50</p></div>
-<a href="#" class="bg-gradient-to-r from-orange-500 to-orange-600 text-white px-8 py-3.5 rounded-full font-bold text-sm hover:shadow-xl hover:shadow-orange-500/30 transition">Vraag offerte aan &#8594;</a>
+<div><p class="text-sm text-slate-400">Geschatte prijs per persoon (incl. 9% BTW)</p><p class="text-xs text-slate-500" id="priceBase"></p><p class="text-4xl font-black text-orange-400" id="priceDisplay">&#8364;67,50</p></div>
+<a href="#" onclick="openModal();return false" class="bg-gradient-to-r from-orange-500 to-orange-600 text-white px-8 py-3.5 rounded-full font-bold text-sm hover:shadow-xl hover:shadow-orange-500/30 transition">Vraag offerte aan &#8594;</a>
 </div>
 </div>
 </section>
@@ -183,10 +189,24 @@ function filterAct(cat) {
     c.style.display = (cat === 'all' || c.dataset.cat === cat) ? '' : 'none';
   });
 }
-function updatePax() {
+const prices={karten:25,lasergame:20,escape:28,bowlen:15,archery:22};const food={borrel:12.5,bbq:22.5,steen:27.5,lunch:15};function updatePax(){const v=document.getElementById('paxSlider').value;document.getElementById('paxCount').textContent=v;calcPrice()}function calcPrice(){const pax=parseInt(document.getElementById('paxSlider').value);const acts=document.querySelectorAll('#actCheck input:checked');let actTotal=0;acts.forEach(a=>actTotal+=parseFloat(a.dataset.price||0));const foodSel=document.querySelector('input[name="food"]:checked');const foodPrice=foodSel?parseFloat(foodSel.dataset.price||0):0;const sub=(actTotal+foodPrice);const btw=sub*0.09;const total=sub+btw;document.getElementById('priceDisplay').textContent='\u20ac'+total.toFixed(2).replace('.',',');document.getElementById('priceBase').textContent='\u20ac'+sub.toFixed(2).replace('.',',')+' + 9% BTW'}function openModal(){const m=document.getElementById('offerteModal');m.style.display='flex';document.getElementById('offConfig').value=document.getElementById('priceDisplay').textContent+' p.p. | '+document.getElementById('paxSlider').value+' personen'}function closeModal(){document.getElementById('offerteModal').style.display='none'}document.addEventListener('DOMContentLoaded',function(){document.querySelectorAll('#actCheck input,input[name="food"],input[name="type"]').forEach(i=>i.addEventListener('change',calcPrice));calcPrice()});function updatePax() {
   const v = document.getElementById('paxSlider').value;
   document.getElementById('paxCount').textContent = v;
 }
 </script>
+<div id="offerteModal" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.7);align-items:center;justify-content:center" onclick="if(event.target===this)closeModal()">
+<div class="glass" style="max-width:500px;width:90%;margin:auto;padding:32px;position:relative">
+<button onclick="closeModal()" style="position:absolute;top:12px;right:16px;background:none;border:none;color:#94a3b8;font-size:1.5rem;cursor:pointer" aria-label="Sluiten">&times;</button>
+<h3 class="text-xl font-bold mb-4">Offerte Aanvragen</h3>
+<form id="offerteForm" action="https://formspree.io/f/xyzplaceholder" method="POST">
+<label for="offNaam" class="block text-sm text-slate-400 mb-1">Naam</label><input id="offNaam" name="naam" type="text" required class="w-full p-2 rounded-lg bg-slate-700 border border-slate-600 text-white mb-3" placeholder="Uw naam">
+<label for="offEmail" class="block text-sm text-slate-400 mb-1">E-mail</label><input id="offEmail" name="email" type="email" required class="w-full p-2 rounded-lg bg-slate-700 border border-slate-600 text-white mb-3" placeholder="email@bedrijf.nl">
+<label for="offTel" class="block text-sm text-slate-400 mb-1">Telefoon</label><input id="offTel" name="telefoon" type="tel" class="w-full p-2 rounded-lg bg-slate-700 border border-slate-600 text-white mb-3" placeholder="06-12345678">
+<input type="hidden" name="configuratie" id="offConfig">
+<label for="offMsg" class="block text-sm text-slate-400 mb-1">Opmerkingen</label><textarea id="offMsg" name="bericht" rows="3" class="w-full p-2 rounded-lg bg-slate-700 border border-slate-600 text-white mb-4" placeholder="Eventuele wensen of vragen"></textarea>
+<button type="submit" class="w-full bg-gradient-to-r from-orange-500 to-orange-600 text-white px-6 py-3 rounded-full font-bold hover:shadow-lg transition">Verstuur offerte aanvraag</button>
+</form></div></div>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"AmusementPark","name":"De Avontuurfabriek","description":"Nederlands grootste indoor activiteitencentrum met 50+ activiteiten","address":{"@type":"PostalAddress","streetAddress":"Oud-Loosdrechtseweg 158","addressLocality":"Loosdrecht","addressCountry":"NL"},"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.5","bestRating":"5","ratingCount":"750"},"url":"https://nicoschotje.github.io/avontuurfabriek-digital-transformation-suite/AF-01-Premium-Landing-Pages.html"}</script>
+<!-- GA4 placeholder --><script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
 </body>
 </html>
