@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AF-04 Competitive Intelligence — Avontuurfabriek</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+:root{--af-primary:#f97316;--af-primary-dark:#ea580c;--af-secondary:#1e293b;--af-surface:#334155;--af-accent-green:#10b981;--af-accent-blue:#3b82f6;--af-accent-purple:#8b5cf6;--af-accent-red:#ef4444;--af-text-primary:#f1f5f9;--af-text-secondary:#94a3b8;--af-gradient-bg:linear-gradient(135deg,#0f172a 0%,#1e293b 100%);--af-font:'Inter',sans-serif;--af-radius-sm:8px;--af-radius-md:12px;--af-radius-lg:16px;--af-radius-xl:24px}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:var(--af-font);background:var(--af-gradient-bg);color:var(--af-text-primary);min-height:100vh;overflow-x:hidden}
+#app-container{max-width:1400px;margin:0 auto;padding:20px}
+.header{display:flex;justify-content:space-between;align-items:center;padding:20px 24px;background:rgba(30,41,59,.7);backdrop-filter:blur(20px);border-radius:var(--af-radius-lg);border:1px solid rgba(255,255,255,.08);margin-bottom:20px;flex-wrap:wrap;gap:12px}
+.header-left{display:flex;align-items:center;gap:16px}
+.logo-mark{width:48px;height:48px;background:linear-gradient(135deg,var(--af-accent-blue),var(--af-accent-purple));border-radius:var(--af-radius-md);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:18px;color:#fff}
+.logo-text{font-size:22px;font-weight:700;background:linear-gradient(135deg,#fff,var(--af-accent-blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.logo-sub{font-size:13px;color:var(--af-text-secondary);margin-top:2px}
+.header-right{display:flex;align-items:center;gap:16px}
+.market-badge{display:flex;align-items:center;gap:8px;padding:8px 16px;background:rgba(16,185,129,.1);border:1px solid rgba(16,185,129,.3);border-radius:20px;font-size:13px;font-weight:600;color:var(--af-accent-green)}
+.badge-dot{width:8px;height:8px;border-radius:50%;background:var(--af-accent-green);animation:pulse 2s infinite}
+.header-date{font-size:13px;color:var(--af-text-secondary);padding:8px 14px;background:rgba(255,255,255,.05);border-radius:var(--af-radius-sm)}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+/* KPI Row */
+.kpi-row{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:20px}
+.kpi-card{background:rgba(30,41,59,.6);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.06);border-radius:var(--af-radius-md);padding:16px;display:flex;align-items:center;gap:12px;transition:all .3s ease}
+.kpi-card:hover{transform:translateY(-2px);border-color:rgba(255,255,255,.15);box-shadow:0 8px 24px rgba(0,0,0,.2)}
+.kpi-icon{width:44px;height:44px;border-radius:var(--af-radius-sm);display:flex;align-items:center;justify-content:center;font-size:20px}
+.kpi-icon.blue{background:rgba(59,130,246,.15)}
+.kpi-icon.green{background:rgba(16,185,129,.15)}
+.kpi-icon.purple{background:rgba(139,92,246,.15)}
+.kpi-icon.orange{background:rgba(249,115,22,.15)}
+.kpi-icon.red{background:rgba(239,68,68,.15)}
+.kpi-content{display:flex;flex-direction:column}
+.kpi-value{font-size:20px;font-weight:700;color:#fff}
+.kpi-label{font-size:11px;color:var(--af-text-secondary);margin-top:2px}
+/* Tab Nav */
+.tab-nav{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:20px;padding:6px;background:rgba(30,41,59,.5);border-radius:var(--af-radius-md);border:1px solid rgba(255,255,255,.06)}
+.tab-btn{padding:10px 18px;border:none;background:transparent;color:var(--af-text-secondary);font-family:var(--af-font);font-size:13px;font-weight:500;border-radius:var(--af-radius-sm);cursor:pointer;transition:all .3s ease;white-space:nowrap}
+.tab-btn:hover{color:var(--af-text-primary);background:rgba(255,255,255,.05)}
+.tab-btn.active{background:linear-gradient(135deg,var(--af-accent-blue),var(--af-accent-purple));color:#fff;font-weight:600}
+.tab-content{display:none;animation:fadeIn .4s ease}
+.tab-content.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+/* Section */
+.section-title{font-size:18px;font-weight:700;margin-bottom:16px;padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,.08)}
+/* Charts */
+.charts-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+.chart-card{background:rgba(30,41,59,.6);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.06);border-radius:var(--af-radius-md);padding:20px;transition:all .3s ease}
+.chart-card:hover{border-color:rgba(255,255,255,.12)}
+.chart-card h3{font-size:14px;font-weight:600;color:var(--af-text-secondary);margin-bottom:12px}
+.chart-card canvas{max-height:260px}
+/* Stats Grid */
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.stat-card{background:rgba(30,41,59,.6);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.06);border-radius:var(--af-radius-md);padding:16px;transition:all .3s ease}
+.stat-card:hover{transform:translateY(-2px);border-color:rgba(249,115,22,.3)}
+.stat-header{font-size:12px;color:var(--af-text-secondary);margin-bottom:6px}
+.stat-value{font-size:24px;font-weight:700;color:#fff}
+.stat-change{font-size:12px;font-weight:500;margin-top:4px}
+.stat-change.positive{color:var(--af-accent-green)}
+.stat-change.neutral{color:var(--af-accent-blue)}
+.stat-bar{height:4px;background:rgba(255,255,255,.08);border-radius:4px;margin-top:8px;overflow:hidden}
+.stat-fill{height:100%;background:var(--af-primary);border-radius:4px;transition:width 1.5s ease}
+.stat-fill.green{background:var(--af-accent-green)}
+.stat-fill.purple{background:var(--af-accent-purple)}
+.stat-fill.orange{background:var(--af-primary)}
+/* Filter Bar */
+.filter-bar{display:flex;gap:6px;margin-bottom:16px}
+.filter-btn{padding:8px 16px;border:1px solid rgba(255,255,255,.1);background:transparent;color:var(--af-text-secondary);font-family:var(--af-font);font-size:12px;font-weight:500;border-radius:20px;cursor:pointer;transition:all .3s ease}
+.filter-btn:hover{border-color:var(--af-accent-blue);color:var(--af-accent-blue)}
+.filter-btn.active{background:var(--af-accent-blue);border-color:var(--af-accent-blue);color:#fff}
+/* Competitor Cards */
+.competitor-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px}
+.competitor-card{background:rgba(30,41,59,.6);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.06);border-radius:var(--af-radius-md);padding:20px;transition:all .3s ease}
+.competitor-card:hover{transform:translateY(-3px);border-color:rgba(255,255,255,.15);box-shadow:0 12px 32px rgba(0,0,0,.25)}
+.competitor-card.highlight{border-color:rgba(249,115,22,.4);background:rgba(249,115,22,.05)}
+.comp-header{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.comp-avatar{width:42px;height:42px;border-radius:var(--af-radius-sm);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;color:#fff}
+.comp-avatar.af{background:linear-gradient(135deg,var(--af-primary),var(--af-primary-dark))}
+.comp-avatar.up{background:linear-gradient(135deg,#ef4444,#dc2626)}
+.comp-avatar.pd{background:linear-gradient(135deg,#06b6d4,#0891b2)}
+.comp-avatar.pa{background:linear-gradient(135deg,#84cc16,#65a30d)}
+.comp-avatar.jx{background:linear-gradient(135deg,#a855f7,#9333ea)}
+.comp-avatar.kz{background:linear-gradient(135deg,#f59e0b,#d97706)}
+.comp-avatar.db{background:linear-gradient(135deg,#ec4899,#db2777)}
+.comp-avatar.tg{background:linear-gradient(135deg,#14b8a6,#0d9488)}
+.comp-info h3{font-size:15px;font-weight:600}
+.comp-location{font-size:12px;color:var(--af-text-secondary)}
+.comp-info{flex:1}
+.comp-rank{padding:4px 10px;border-radius:var(--af-radius-sm);font-size:12px;font-weight:700;background:rgba(59,130,246,.15);color:var(--af-accent-blue)}
+.comp-rank.threat{background:rgba(239,68,68,.15);color:var(--af-accent-red)}
+.comp-rank.intl{background:rgba(139,92,246,.15);color:var(--af-accent-purple)}
+.comp-stats{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px}
+.comp-stat{display:flex;justify-content:space-between;padding:6px 10px;background:rgba(255,255,255,.03);border-radius:6px}
+.cs-label{font-size:11px;color:var(--af-text-secondary)}
+.cs-value{font-size:11px;font-weight:600;color:#fff}
+.comp-tags{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:12px}
+.tag{padding:3px 8px;border-radius:12px;font-size:10px;font-weight:600}
+.tag.orange{background:rgba(249,115,22,.15);color:var(--af-primary)}
+.tag.blue{background:rgba(59,130,246,.15);color:var(--af-accent-blue)}
+.tag.purple{background:rgba(139,92,246,.15);color:var(--af-accent-purple)}
+.tag.green{background:rgba(16,185,129,.15);color:var(--af-accent-green)}
+.tag.red{background:rgba(239,68,68,.15);color:var(--af-accent-red)}
+.comp-score{display:flex;align-items:center;gap:10px}
+.score-bar{flex:1;height:6px;background:rgba(255,255,255,.08);border-radius:6px;overflow:hidden}
+.score-fill{height:100%;background:var(--af-primary);border-radius:6px;transition:width 1.5s ease}
+.score-fill.red{background:var(--af-accent-red)}
+.score-fill.purple{background:var(--af-accent-purple)}
+.score-fill.green{background:var(--af-accent-green)}
+.comp-score span{font-size:12px;font-weight:600;color:var(--af-text-secondary)}
+/* Comparison Table */
+.comparison-table-wrap{overflow-x:auto;border-radius:var(--af-radius-md);border:1px solid rgba(255,255,255,.06)}
+.comparison-table{width:100%;border-collapse:collapse;font-size:13px}
+.comparison-table th,.comparison-table td{padding:12px 16px;text-align:left;border-bottom:1px solid rgba(255,255,255,.06)}
+.comparison-table thead th{background:rgba(30,41,59,.8);font-weight:600;color:var(--af-text-secondary);font-size:12px;text-transform:uppercase;letter-spacing:.5px;position:sticky;top:0}
+.comparison-table tbody tr:hover{background:rgba(255,255,255,.03)}
+.comparison-table .highlight-col{background:rgba(249,115,22,.06);font-weight:600;color:var(--af-primary)}
+.comparison-table thead .highlight-col{background:rgba(249,115,22,.15);color:var(--af-primary)}
+/* SWOT */
+.swot-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.swot-card{border-radius:var(--af-radius-md);padding:20px;backdrop-filter:blur(12px)}
+.swot-card.strengths{background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.2)}
+.swot-card.weaknesses{background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.2)}
+.swot-card.opportunities{background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.2)}
+.swot-card.threats{background:rgba(249,115,22,.08);border:1px solid rgba(249,115,22,.2)}
+.swot-header{font-size:16px;font-weight:700;margin-bottom:12px}
+.swot-card ul{list-style:none;padding:0}
+.swot-card li{padding:6px 0;font-size:13px;line-height:1.5;color:var(--af-text-primary);border-bottom:1px solid rgba(255,255,255,.04)}
+.swot-card li:last-child{border-bottom:none}
+.swot-card li strong{color:#fff}
+/* Strategy Cards */
+.strategy-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
+.strategy-card{background:rgba(30,41,59,.6);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.06);border-radius:var(--af-radius-md);padding:20px;transition:all .3s ease;position:relative;overflow:hidden}
+.strategy-card:hover{transform:translateY(-2px);border-color:rgba(59,130,246,.3);box-shadow:0 8px 24px rgba(0,0,0,.2)}
+.strat-number{position:absolute;top:12px;right:16px;font-size:36px;font-weight:900;color:rgba(255,255,255,.04)}
+.strategy-card h3{font-size:15px;font-weight:600;margin-bottom:8px}
+.strategy-card p{font-size:13px;color:var(--af-text-secondary);line-height:1.5;margin-bottom:12px}
+.strat-metrics{display:flex;gap:6px;margin-bottom:10px;flex-wrap:wrap}
+.strat-tag{padding:4px 10px;border-radius:12px;font-size:11px;font-weight:600;background:rgba(59,130,246,.12);color:var(--af-accent-blue)}
+.strat-tag.high{background:rgba(239,68,68,.12);color:var(--af-accent-red)}
+.strat-tag.medium{background:rgba(249,115,22,.12);color:var(--af-primary)}
+.strat-bar{height:4px;background:rgba(255,255,255,.08);border-radius:4px;overflow:hidden}
+.strat-fill{height:100%;background:linear-gradient(90deg,var(--af-accent-blue),var(--af-accent-purple));border-radius:4px;transition:width 1.5s ease}
+/* Roadmap */
+.roadmap{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:16px}
+.phase-card{background:rgba(30,41,59,.6);backdrop-filter:blur(12px);border-radius:var(--af-radius-md);padding:20px;transition:all .3s ease}
+.phase-card:hover{transform:translateY(-2px)}
+.phase-card.phase1{border:1px solid rgba(16,185,129,.3)}
+.phase-card.phase2{border:1px solid rgba(59,130,246,.3)}
+.phase-card.phase3{border:1px solid rgba(139,92,246,.3)}
+.phase-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.phase-badge{padding:4px 12px;border-radius:12px;font-size:11px;font-weight:700;background:rgba(249,115,22,.15);color:var(--af-primary)}
+.phase-date{font-size:12px;color:var(--af-text-secondary)}
+.phase-card h3{font-size:16px;font-weight:700;margin-bottom:8px}
+.phase-investment{font-size:14px;font-weight:600;color:var(--af-accent-blue);margin-bottom:12px}
+.phase-card ul{list-style:none;padding:0;margin-bottom:12px}
+.phase-card li{padding:4px 0;font-size:13px;color:var(--af-text-secondary)}
+.phase-card li:before{content:"\2713 ";color:var(--af-accent-green);font-weight:700}
+.phase-result{background:rgba(255,255,255,.04);border-radius:var(--af-radius-sm);padding:10px;margin-bottom:8px}
+.result-label{display:block;font-size:11px;color:var(--af-text-secondary)}
+.result-value{font-size:14px;font-weight:700;color:var(--af-accent-green)}
+.phase-risk{font-size:12px;font-weight:600;padding:4px 10px;border-radius:12px;display:inline-block}
+.phase-risk.green{background:rgba(16,185,129,.12);color:var(--af-accent-green)}
+.phase-risk.yellow{background:rgba(249,115,22,.12);color:var(--af-primary)}
+/* Summary Bar */
+.summary-bar{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:16px;padding:20px;background:linear-gradient(135deg,rgba(249,115,22,.08),rgba(59,130,246,.08));border:1px solid rgba(249,115,22,.2);border-radius:var(--af-radius-md)}
+.summary-item{text-align:center}
+.sum-label{display:block;font-size:12px;color:var(--af-text-secondary);margin-bottom:4px}
+.sum-value{font-size:22px;font-weight:700;color:#fff}
+/* Responsive */
+@media(max-width:1024px){.kpi-row{grid-template-columns:repeat(3,1fr)}.charts-row,.swot-grid{grid-template-columns:1fr}.roadmap{grid-template-columns:1fr}.stats-grid{grid-template-columns:1fr 1fr}.summary-bar{grid-template-columns:1fr 1fr}}
+@media(max-width:640px){.kpi-row{grid-template-columns:1fr 1fr}.header{flex-direction:column;align-items:flex-start}.tab-nav{overflow-x:auto}.competitor-grid{grid-template-columns:1fr}.strategy-grid{grid-template-columns:1fr}.stats-grid,.summary-bar{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<!-- AF-04 Competitive Intelligence Dashboard -->
+<div id="app-container">
+  <!-- Header -->
+  <header class="header">
+    <div class="header-left">
+      <div class="logo-mark">CI</div>
+      <div>
+        <h1 class="logo-text">Competitive Intelligence</h1>
+        <p class="logo-sub">Avontuurfabriek — Marktanalyse Dashboard</p>
+      </div>
+    </div>
+    <div class="header-right">
+      <div class="market-badge">
+        <span class="badge-dot green"></span>
+        Benelux Markt: €6.9B
+      </div>
+      <div class="header-date" id="currentDate"></div>
+    </div>
+  </header>
+
+  <!-- KPI Row -->
+  <div class="kpi-row">
+    <div class="kpi-card">
+      <div class="kpi-icon blue">🎯</div>
+      <div class="kpi-content">
+        <span class="kpi-value">#2</span>
+        <span class="kpi-label">Marktpositie NL</span>
+      </div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-icon green">💰</div>
+      <div class="kpi-content">
+        <span class="kpi-value">€4.8B</span>
+        <span class="kpi-label">NL Marktwaarde</span>
+      </div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-icon purple">🏭</div>
+      <div class="kpi-content">
+        <span class="kpi-value">13,500m²</span>
+        <span class="kpi-label">Faciliteit Grootte</span>
+      </div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-icon orange">🎮</div>
+      <div class="kpi-content">
+        <span class="kpi-value">50+</span>
+        <span class="kpi-label">Activiteiten</span>
+      </div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-icon red">⭐</div>
+      <div class="kpi-content">
+        <span class="kpi-value">4.5/5</span>
+        <span class="kpi-label">Klantbeoordeling</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tab Navigation -->
+  <div class="tab-nav">
+    <button class="tab-btn active" data-tab="overview">📊 Marktoverzicht</button>
+    <button class="tab-btn" data-tab="competitors">🏢 Concurrenten</button>
+    <button class="tab-btn" data-tab="comparison">⚔️ Vergelijking</button>
+    <button class="tab-btn" data-tab="swot">🔍 SWOT Analyse</button>
+    <button class="tab-btn" data-tab="strategy">🚀 Strategie</button>
+    <button class="tab-btn" data-tab="opportunities">💡 Kansen</button>
+  </div>
+
+  <!-- TAB 1: Market Overview -->
+  <div class="tab-content active" id="tab-overview">
+    <div class="section-title">Benelux Entertainment Markt — Overzicht 2026</div>
+    <div class="charts-row">
+      <div class="chart-card">
+        <h3>Marktaandeel per Segment</h3>
+        <canvas id="marketShareChart"></canvas>
+      </div>
+      <div class="chart-card">
+        <h3>Omzet Trend (€M) — NL Entertainment Sector</h3>
+        <canvas id="revenueTrendChart"></canvas>
+      </div>
+    </div>
+    <div class="charts-row">
+      <div class="chart-card">
+        <h3>Concurrenten Positionering</h3>
+        <canvas id="radarChart"></canvas>
+      </div>
+      <div class="chart-card">
+        <h3>Omzetmodel Vergelijking</h3>
+        <canvas id="revenueModelChart"></canvas>
+      </div>
+    </div>
+    <!-- Market Stats -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-header">NL Corporate Events</div>
+        <div class="stat-value">€664M</div>
+        <div class="stat-change positive">+12.4% YoY</div>
+        <div class="stat-bar"><div class="stat-fill" style="width:72%"></div></div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-header">Gem. Budget/Werknemer</div>
+        <div class="stat-value">€460</div>
+        <div class="stat-change positive">+95.7% vs 2020</div>
+        <div class="stat-bar"><div class="stat-fill green" style="width:88%"></div></div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-header">Bedrijven met Uitje</div>
+        <div class="stat-value">71%</div>
+        <div class="stat-change positive">+6% vs vorig jaar</div>
+        <div class="stat-bar"><div class="stat-fill purple" style="width:71%"></div></div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-header">Teambuilding Voorkeur</div>
+        <div class="stat-value">22%</div>
+        <div class="stat-change neutral">#1 Categorie</div>
+        <div class="stat-bar"><div class="stat-fill orange" style="width:22%"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 2: Competitors -->
+  <div class="tab-content" id="tab-competitors">
+    <div class="section-title">Concurrenten Database — Benelux</div>
+    <div class="filter-bar">
+      <button class="filter-btn active" data-filter="all">Alle</button>
+      <button class="filter-btn" data-filter="nl">Nederland</button>
+      <button class="filter-btn" data-filter="be">België</button>
+      <button class="filter-btn" data-filter="intl">Internationaal</button>
+    </div>
+    <div class="competitor-grid">
+      <!-- Avontuurfabriek (Reference) -->
+      <div class="competitor-card highlight" data-country="nl">
+        <div class="comp-header">
+          <div class="comp-avatar af">AF</div>
+          <div class="comp-info">
+            <h3>Avontuurfabriek</h3>
+            <span class="comp-location">📍 Loosdrecht, NL</span>
+          </div>
+          <div class="comp-rank">#2</div>
+        </div>
+        <div class="comp-stats">
+          <div class="comp-stat"><span class="cs-label">Oppervlakte</span><span class="cs-value">13,500m²</span></div>
+          <div class="comp-stat"><span class="cs-label">Activiteiten</span><span class="cs-value">50+</span></div>
+          <div class="comp-stat"><span class="cs-label">Capaciteit</span><span class="cs-value">750 pers</span></div>
+          <div class="comp-stat"><span class="cs-label">Segment</span><span class="cs-value">Corporate 52%</span></div>
+        </div>
+        <div class="comp-tags">
+          <span class="tag orange">LED Karten</span>
+          <span class="tag blue">Lasergame</span>
+          <span class="tag purple">Escape Rooms</span>
+          <span class="tag green">Mix & Deal</span>
+        </div>
+        <div class="comp-score">
+          <div class="score-bar"><div class="score-fill" style="width:85%"></div></div>
+          <span>85/100</span>
+        </div>
+      </div>
+
+      <!-- UP Events -->
+      <div class="competitor-card" data-country="nl">
+        <div class="comp-header">
+          <div class="comp-avatar up">UP</div>
+          <div class="comp-info">
+            <h3>UP Events</h3>
+            <span class="comp-location">📍 Amsterdam/Weesp, NL</span>
+          </div>
+          <div class="comp-rank threat">#1</div>
+        </div>
+        <div class="comp-stats">
+          <div class="comp-stat"><span class="cs-label">Oppervlakte</span><span class="cs-value">45,000m²</span></div>
+          <div class="comp-stat"><span class="cs-label">Activiteiten</span><span class="cs-value">35+</span></div>
+          <div class="comp-stat"><span class="cs-label">Capaciteit</span><span class="cs-value">5,000 pers</span></div>
+          <div class="comp-stat"><span class="cs-label">Segment</span><span class="cs-value">Premium Corp</span></div>
+        </div>
+        <div class="comp-tags">
+          <span class="tag red">VR/AR</span>
+          <span class="tag blue">Hybrid Events</span>
+          <span class="tag green">Sustainability</span>
+        </div>
+        <div class="comp-score">
+          <div class="score-bar"><div class="score-fill red" style="width:92%"></div></div>
+          <span>92/100</span>
+        </div>
+      </div>
+
+      <!-- Playdome -->
+      <div class="competitor-card" data-country="nl">
+        <div class="comp-header">
+          <div class="comp-avatar pd">PD</div>
+          <div class="comp-info">
+            <h3>Playdôme Roosendaal</h3>
+            <span class="comp-location">📍 Roosendaal, NL</span>
+          </div>
+          <div class="comp-rank">#4</div>
+        </div>
+        <div class="comp-stats">
+          <div class="comp-stat"><span class="cs-label">Oppervlakte</span><span class="cs-value">5,000m²</span></div>
+          <div class="comp-stat"><span class="cs-label">Activiteiten</span><span class="cs-value">12</span></div>
+          <div class="comp-stat"><span class="cs-label">Capaciteit</span><span class="cs-value">300 pers</span></div>
+          <div class="comp-stat"><span class="cs-label">Segment</span><span class="cs-value">Familie</span></div>
+        </div>
+        <div class="comp-tags">
+          <span class="tag blue">LED E-Karts</span>
+          <span class="tag purple">Lasergame</span>
+          <span class="tag orange">Bowling</span>
+        </div>
+        <div class="comp-score">
+          <div class="score-bar"><div class="score-fill" style="width:62%"></div></div>
+          <span>62/100</span>
+        </div>
+      </div>
+
+      <!-- Powerarea -->
+      <div class="competitor-card" data-country="nl">
+        <div class="comp-header">
+          <div class="comp-avatar pa">PA</div>
+          <div class="comp-info">
+            <h3>Powerarea</h3>
+            <span class="comp-location">📍 Limburg, NL</span>
+          </div>
+          <div class="comp-rank">#6</div>
+        </div>
+        <div class="comp-stats">
+          <div class="comp-stat"><span class="cs-label">Oppervlakte</span><span class="cs-value">3,500m²</span></div>
+          <div class="comp-stat"><span class="cs-label">Activiteiten</span><span class="cs-value">8</span></div>
+          <div class="comp-stat"><span class="cs-label">Capaciteit</span><span class="cs-value">150 pers</span></div>
+          <div class="comp-stat"><span class="cs-label">Segment</span><span class="cs-value">Budget</span></div>
+        </div>
+        <div class="comp-tags">
+          <span class="tag blue">Karten</span>
+          <span class="tag orange">Paintball</span>
+          <span class="tag purple">Lasergame</span>
+        </div>
+        <div class="comp-score">
+          <div class="score-bar"><div class="score-fill" style="width:45%"></div></div>
+          <span>45/100</span>
+        </div>
+      </div>
+
+      <!-- Jump XL -->
+      <div class="competitor-card" data-country="nl">
+        <div class="comp-header">
+          <div class="comp-avatar jx">JX</div>
+          <div class="comp-info">
+            <h3>Jump XL</h3>
+            <span class="comp-location">📍 Meerdere locaties, NL</span>
+          </div>
+          <div class="comp-rank">#5</div>
+        </div>
+        <div class="comp-stats">
+          <div class="comp-stat"><span class="cs-label">Oppervlakte</span><span class="cs-value">3,000m²</span></div>
+          <div class="comp-stat"><span class="cs-label">Activiteiten</span><span class="cs-value">10</span></div>
+          <div class="comp-stat"><span class="cs-label">Locaties</span><span class="cs-value">8+ NL</span></div>
+          <div class="comp-stat"><span class="cs-label">Segment</span><span class="cs-value">Jeugd/Familie</span></div>
+        </div>
+        <div class="comp-tags">
+          <span class="tag green">Trampolines</span>
+          <span class="tag blue">Franchise</span>
+          <span class="tag orange">Ninja Parcours</span>
+        </div>
+        <div class="comp-score">
+          <div class="score-bar"><div class="score-fill" style="width:55%"></div></div>
+          <span>55/100</span>
+        </div>
+      </div>
+
+      <!-- Koezio Belgium -->
+      <div class="competitor-card" data-country="be">
+        <div class="comp-header">
+          <div class="comp-avatar kz">KZ</div>
+          <div class="comp-info">
+            <h3>Koezio</h3>
+            <span class="comp-location">📍 Hasselt/Brussel, BE</span>
+          </div>
+          <div class="comp-rank">#3</div>
+        </div>
+        <div class="comp-stats">
+          <div class="comp-stat"><span class="cs-label">Oppervlakte</span><span class="cs-value">4,000m²</span></div>
+          <div class="comp-stat"><span class="cs-label">Activiteiten</span><span class="cs-value">15</span></div>
+          <div class="comp-stat"><span class="cs-label">Capaciteit</span><span class="cs-value">400 pers</span></div>
+          <div class="comp-stat"><span class="cs-label">Segment</span><span class="cs-value">Teambuilding</span></div>
+        </div>
+        <div class="comp-tags">
+          <span class="tag purple">Team Challenges</span>
+          <span class="tag blue">Corporate</span>
+          <span class="tag green">Missies</span>
+        </div>
+        <div class="comp-score">
+          <div class="score-bar"><div class="score-fill purple" style="width:68%"></div></div>
+          <span>68/100</span>
+        </div>
+      </div>
+
+      <!-- Dave & Busters Intl -->
+      <div class="competitor-card" data-country="intl">
+        <div class="comp-header">
+          <div class="comp-avatar db">DB</div>
+          <div class="comp-info">
+            <h3>Dave & Buster's</h3>
+            <span class="comp-location">📍 144 locaties, USA/CA</span>
+          </div>
+          <div class="comp-rank intl">INT</div>
+        </div>
+        <div class="comp-stats">
+          <div class="comp-stat"><span class="cs-label">Omzet</span><span class="cs-value">$1.45B</span></div>
+          <div class="comp-stat"><span class="cs-label">Activiteiten</span><span class="cs-value">150+ games</span></div>
+          <div class="comp-stat"><span class="cs-label">Model</span><span class="cs-value">Walk-in</span></div>
+          <div class="comp-stat"><span class="cs-label">Focus</span><span class="cs-value">Arcade + F&B</span></div>
+        </div>
+        <div class="comp-tags">
+          <span class="tag red">Benchmark</span>
+          <span class="tag blue">Arcade</span>
+          <span class="tag orange">Loyalty</span>
+        </div>
+        <div class="comp-score">
+          <div class="score-bar"><div class="score-fill green" style="width:78%"></div></div>
+          <span>78/100</span>
+        </div>
+      </div>
+
+      <!-- TopGolf Intl -->
+      <div class="competitor-card" data-country="intl">
+        <div class="comp-header">
+          <div class="comp-avatar tg">TG</div>
+          <div class="comp-info">
+            <h3>TopGolf</h3>
+            <span class="comp-location">📍 70 locaties, Global</span>
+          </div>
+          <div class="comp-rank intl">INT</div>
+        </div>
+        <div class="comp-stats">
+          <div class="comp-stat"><span class="cs-label">Gasten/Jaar</span><span class="cs-value">23M</span></div>
+          <div class="comp-stat"><span class="cs-label">Focus</span><span class="cs-value">Golf Entertainment</span></div>
+          <div class="comp-stat"><span class="cs-label">Banen/Locatie</span><span class="cs-value">350</span></div>
+          <div class="comp-stat"><span class="cs-label">Segment</span><span class="cs-value">Premium</span></div>
+        </div>
+        <div class="comp-tags">
+          <span class="tag red">Expansie EU</span>
+          <span class="tag green">Eatertainment</span>
+          <span class="tag purple">Tech</span>
+        </div>
+        <div class="comp-score">
+          <div class="score-bar"><div class="score-fill green" style="width:88%"></div></div>
+          <span>88/100</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 3: Comparison -->
+  <div class="tab-content" id="tab-comparison">
+    <div class="section-title">Vergelijkingsmatrix — Alle Dimensies</div>
+    <div class="comparison-table-wrap">
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th>Dimensie</th>
+            <th class="highlight-col">Avontuurfabriek</th>
+            <th>UP Events</th>
+            <th>Playdôme</th>
+            <th>Koezio</th>
+            <th>Powerarea</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Oppervlakte</td><td class="highlight-col">13,500m²</td><td>45,000m²</td><td>5,000m²</td><td>4,000m²</td><td>3,500m²</td></tr>
+          <tr><td>Activiteiten</td><td class="highlight-col">50+</td><td>35+</td><td>12</td><td>15</td><td>8</td></tr>
+          <tr><td>Max Capaciteit</td><td class="highlight-col">750</td><td>5,000</td><td>300</td><td>400</td><td>150</td></tr>
+          <tr><td>Prijs pp</td><td class="highlight-col">€50-€90</td><td>€75-€150+</td><td>€25-€50</td><td>€35-€70</td><td>€20-€40</td></tr>
+          <tr><td>Corporate %</td><td class="highlight-col">52%</td><td>70%</td><td>25%</td><td>60%</td><td>30%</td></tr>
+          <tr><td>Online Configurator</td><td class="highlight-col">✅ Mix & Deal</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
+          <tr><td>VR/AR Tech</td><td class="highlight-col">❌</td><td>✅</td><td>❌</td><td>❌</td><td>❌</td></tr>
+          <tr><td>Exclusiviteit</td><td class="highlight-col">✅ Nooit groepen mixen</td><td>✅</td><td>❌</td><td>✅</td><td>❌</td></tr>
+          <tr><td>F&B Integratie</td><td class="highlight-col">✅ Steengrillen, BBQ</td><td>✅</td><td>Beperkt</td><td>Beperkt</td><td>Basis</td></tr>
+          <tr><td>Vergaderzalen</td><td class="highlight-col">✅ 10+</td><td>✅</td><td>❌</td><td>✅</td><td>❌</td></tr>
+          <tr><td>Beoordeling</td><td class="highlight-col">⭐ 4.5/5</td><td>⭐ 4.3/5</td><td>⭐ 4.0/5</td><td>⭐ 4.2/5</td><td>⭐ 3.8/5</td></tr>
+          <tr><td>Locaties</td><td class="highlight-col">1</td><td>2</td><td>1</td><td>2</td><td>1</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="charts-row" style="margin-top:24px">
+      <div class="chart-card">
+        <h3>Prijs vs. Activiteiten Positionering</h3>
+        <canvas id="priceActivityChart"></canvas>
+      </div>
+      <div class="chart-card">
+        <h3>Capaciteit per Concurrent</h3>
+        <canvas id="capacityChart"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 4: SWOT -->
+  <div class="tab-content" id="tab-swot">
+    <div class="section-title">SWOT Analyse — Avontuurfabriek vs. Markt</div>
+    <div class="swot-grid">
+      <div class="swot-card strengths">
+        <div class="swot-header">💪 Sterktes</div>
+        <ul>
+          <li><strong>50+ activiteiten</strong> — breedste aanbod in NL</li>
+          <li><strong>Verticale integratie</strong> — eigen pand, F&B, DJ, aannemer</li>
+          <li><strong>Mix & Deal configurator</strong> — uniek in NL markt</li>
+          <li><strong>Exclusiviteitsgarantie</strong> — nooit groepen combineren</li>
+          <li><strong>Centrale locatie</strong> — 25 min van Amsterdam/Utrecht</li>
+          <li><strong>Multi-brand strategie</strong> — Spelekids + Sportfabriek</li>
+          <li><strong>All-weather</strong> — volledig overdekt, geen seizoensgebondenheid</li>
+          <li><strong>Vergaderen + activiteiten</strong> — concurreert met hotels</li>
+        </ul>
+      </div>
+      <div class="swot-card weaknesses">
+        <div class="swot-header">⚠️ Zwaktes</div>
+        <ul>
+          <li><strong>Single-location risico</strong> — alle omzet op één plek</li>
+          <li><strong>Semi-landelijke ligging</strong> — geen spontaan bezoek</li>
+          <li><strong>Lagere naamsbekendheid</strong> — geen landelijke keten</li>
+          <li><strong>Capaciteitsplafond</strong> — max 750 vs UP Events 5.000</li>
+          <li><strong>Tech achterstand</strong> — geen VR/AR vs concurrenten</li>
+          <li><strong>Arbeidsintensief</strong> — 50+ activiteiten vereist veel personeel</li>
+        </ul>
+      </div>
+      <div class="swot-card opportunities">
+        <div class="swot-header">🚀 Kansen</div>
+        <ul>
+          <li><strong>Franchise model</strong> — Rotterdam, Eindhoven, Groningen</li>
+          <li><strong>Digitale upsell</strong> — VR zones, interactieve projectie</li>
+          <li><strong>Duurzaamheid</strong> — zonnepanelen, circulaire F&B</li>
+          <li><strong>Internationale licentie</strong> — België, Duitsland expansie</li>
+          <li><strong>Premium tier</strong> — VIP pakketten €150+ pp</li>
+          <li><strong>Kinderabonnement</strong> — maandelijks lidmaatschap families</li>
+        </ul>
+      </div>
+      <div class="swot-card threats">
+        <div class="swot-header">🚨 Bedreigingen</div>
+        <ul>
+          <li><strong>UP Events expansie</strong> — als zij centraal NL openen</li>
+          <li><strong>Economische neergang</strong> — budgetten halveren</li>
+          <li><strong>TopGolf/Puttshack NL</strong> — internationale ketens met VC</li>
+          <li><strong>Commoditisering</strong> — meer venues kopiëren multi-activiteit</li>
+          <li><strong>Personeelstekort</strong> — horeca/events sector krapte</li>
+          <li><strong>Tech disruptie</strong> — VR thuis ervaringen</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 5: Strategy -->
+  <div class="tab-content" id="tab-strategy">
+    <div class="section-title">7 Strategieën voor Marktdominantie</div>
+    <div class="strategy-grid">
+      <div class="strategy-card">
+        <div class="strat-number">01</div>
+        <h3>Tech Leap — HOLOGATE VR Arena</h3>
+        <p>Installeer multiplayer VR systeem als eerste in centraal NL. Investering: €70K, ROI: 2.5 jaar.</p>
+        <div class="strat-metrics">
+          <span class="strat-tag high">Prioriteit: Kritiek</span>
+          <span class="strat-tag">€180-300K/jaar</span>
+        </div>
+        <div class="strat-bar"><div class="strat-fill" style="width:95%"></div></div>
+      </div>
+      <div class="strategy-card">
+        <div class="strat-number">02</div>
+        <h3>Interactieve Projectie Systemen</h3>
+        <p>Motion-sensing vloer/wand projecties in Lounge + Spelekids. Instagram-waardige ervaringen.</p>
+        <div class="strat-metrics">
+          <span class="strat-tag high">Prioriteit: Kritiek</span>
+          <span class="strat-tag">€40-70K/jaar</span>
+        </div>
+        <div class="strat-bar"><div class="strat-fill" style="width:90%"></div></div>
+      </div>
+      <div class="strategy-card">
+        <div class="strat-number">03</div>
+        <h3>Digitale Axe Throwing</h3>
+        <p>Upgrade bestaande Western Saloon met projectie-scoring. Uniek in Nederland.</p>
+        <div class="strat-metrics">
+          <span class="strat-tag medium">Prioriteit: Hoog</span>
+          <span class="strat-tag">€120-180K/jaar</span>
+        </div>
+        <div class="strat-bar"><div class="strat-fill" style="width:80%"></div></div>
+      </div>
+      <div class="strategy-card">
+        <div class="strat-number">04</div>
+        <h3>AI Dynamic Pricing Engine</h3>
+        <p>Machine learning voor Mix & Deal optimalisatie. 8-12% omzetverhoging. Laagste risico.</p>
+        <div class="strat-metrics">
+          <span class="strat-tag high">Prioriteit: Kritiek</span>
+          <span class="strat-tag">€150-300K/jaar</span>
+        </div>
+        <div class="strat-bar"><div class="strat-fill" style="width:92%"></div></div>
+      </div>
+      <div class="strategy-card">
+        <div class="strat-number">05</div>
+        <h3>TrackMan Golf Simulators</h3>
+        <p>Premium golf entertainment — geen multi-activiteit venue in NL biedt dit. Corporate netwerk sport.</p>
+        <div class="strat-metrics">
+          <span class="strat-tag medium">Prioriteit: Hoog</span>
+          <span class="strat-tag">€150-250K/jaar</span>
+        </div>
+        <div class="strat-bar"><div class="strat-fill" style="width:75%"></div></div>
+      </div>
+      <div class="strategy-card">
+        <div class="strat-number">06</div>
+        <h3>Immersive Dining Projectie</h3>
+        <p>Transformeer Steiger room met projection mapping. Premium pricing €75-150 pp.</p>
+        <div class="strat-metrics">
+          <span class="strat-tag medium">Prioriteit: Hoog</span>
+          <span class="strat-tag">€60-100K/jaar</span>
+        </div>
+        <div class="strat-bar"><div class="strat-fill" style="width:70%"></div></div>
+      </div>
+      <div class="strategy-card">
+        <div class="strat-number">07</div>
+        <h3>Social Media Wall + Viraliteit</h3>
+        <p>Real-time Instagram/TikTok muur. Klanten worden marketeers. €30-50K equiv. in bereik.</p>
+        <div class="strat-metrics">
+          <span class="strat-tag high">Prioriteit: Kritiek</span>
+          <span class="strat-tag">€5-10K invest</span>
+        </div>
+        <div class="strat-bar"><div class="strat-fill" style="width:88%"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 6: Opportunities -->
+  <div class="tab-content" id="tab-opportunities">
+    <div class="section-title">Investerings Roadmap — 3 Fasen</div>
+    <div class="roadmap">
+      <div class="phase-card phase1">
+        <div class="phase-header">
+          <span class="phase-badge">FASE 1</span>
+          <span class="phase-date">Q2-Q3 2026</span>
+        </div>
+        <h3>"Technology Leap"</h3>
+        <div class="phase-investment">€100-140K investering</div>
+        <ul>
+          <li>HOLOGATE VR Arena (€70K)</li>
+          <li>Interactieve Projectie Vloer (€20K)</li>
+          <li>AI Dynamic Pricing (€25K)</li>
+          <li>Social Media Wall (€8K)</li>
+        </ul>
+        <div class="phase-result">
+          <span class="result-label">Verwacht resultaat:</span>
+          <span class="result-value">+12-18% omzet (€360K-1M)</span>
+        </div>
+        <div class="phase-risk green">Risico: Laag</div>
+      </div>
+      <div class="phase-card phase2">
+        <div class="phase-header">
+          <span class="phase-badge">FASE 2</span>
+          <span class="phase-date">Q4 2026</span>
+        </div>
+        <h3>"Premium Positioning"</h3>
+        <div class="phase-investment">€50-85K investering</div>
+        <ul>
+          <li>Digital Axe Throwing (€12K)</li>
+          <li>Immersive Dining Projectie (€55K)</li>
+        </ul>
+        <div class="phase-result">
+          <span class="result-label">Verwacht resultaat:</span>
+          <span class="result-value">€90-120 pp premium pricing</span>
+        </div>
+        <div class="phase-risk green">Risico: Laag</div>
+      </div>
+      <div class="phase-card phase3">
+        <div class="phase-header">
+          <span class="phase-badge">FASE 3</span>
+          <span class="phase-date">2027</span>
+        </div>
+        <h3>"Market Domination"</h3>
+        <div class="phase-investment">€150-220K investering</div>
+        <ul>
+          <li>TrackMan Golf Simulators (€90K)</li>
+          <li>Esports Lounge OF Pickleball (€100K)</li>
+        </ul>
+        <div class="phase-result">
+          <span class="result-label">Verwacht resultaat:</span>
+          <span class="result-value">Omzet naar €8-10M/jaar</span>
+        </div>
+        <div class="phase-risk yellow">Risico: Medium</div>
+      </div>
+    </div>
+    <!-- Financial Summary -->
+    <div class="charts-row" style="margin-top:24px">
+      <div class="chart-card">
+        <h3>Omzet Groei Projectie (€M)</h3>
+        <canvas id="growthChart"></canvas>
+      </div>
+      <div class="chart-card">
+        <h3>Investering vs ROI per Fase</h3>
+        <canvas id="roiChart"></canvas>
+      </div>
+    </div>
+    <div class="summary-bar">
+      <div class="summary-item">
+        <span class="sum-label">Totale Investering</span>
+        <span class="sum-value">€300-445K</span>
+      </div>
+      <div class="summary-item">
+        <span class="sum-label">Terugverdientijd</span>
+        <span class="sum-value">2.2-2.8 jaar</span>
+      </div>
+      <div class="summary-item">
+        <span class="sum-label">3-Jaar ROI</span>
+        <span class="sum-value">35-52%</span>
+      </div>
+      <div class="summary-item">
+        <span class="sum-label">2028 Omzetdoel</span>
+        <span class="sum-value">€8-12M</span>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /app-container -->
+<script>
+JS_PLACEHOLDER
+</script>
+// Date
+const d=new Date();
+const months=['Januari','Februari','Maart','April','Mei','Juni','Juli','Augustus','September','Oktober','November','December'];
+const days=['Zondag','Maandag','Dinsdag','Woensdag','Donderdag','Vrijdag','Zaterdag'];
+document.getElementById('currentDate').textContent=`${days[d.getDay()]} ${d.getDate()} ${months[d.getMonth()]} ${d.getFullYear()}`;
+
+// Tab Switching
+document.querySelectorAll('.tab-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+    document.querySelectorAll('.tab-content').forEach(c=>c.classList.remove('active'));
+    btn.classList.add('active');
+    const tab=btn.getAttribute('data-tab');
+    document.getElementById('tab-'+tab).classList.add('active');
+    if(tab==='comparison'&&!window.compChartsInit){initCompCharts();window.compChartsInit=true;}
+    if(tab==='opportunities'&&!window.oppChartsInit){initOppCharts();window.oppChartsInit=true;}
+  });
+});
+
+// Competitor Filter
+document.querySelectorAll('.filter-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    const f=btn.getAttribute('data-filter');
+    document.querySelectorAll('.competitor-card').forEach(card=>{
+      if(f==='all'||card.getAttribute('data-country')===f){card.style.display='';}
+      else{card.style.display='none';}
+    });
+  });
+});
+
+// Chart.js Global Config
+Chart.defaults.color='#94a3b8';
+Chart.defaults.font.family='Inter';
+Chart.defaults.plugins.legend.labels.usePointStyle=true;
+
+// Market Share Doughnut
+new Chart(document.getElementById('marketShareChart'),{
+  type:'doughnut',
+  data:{
+    labels:['Corporate Events','Particuliere Groepen','Families/Kids','Walk-in Leisure','Teambuilding Specialist'],
+    datasets:[{data:[38,25,18,10,9],backgroundColor:['#3b82f6','#f97316','#10b981','#8b5cf6','#ef4444'],borderWidth:0,hoverOffset:8}]
+  },
+  options:{responsive:true,maintainAspectRatio:false,cutout:'65%',plugins:{legend:{position:'bottom',labels:{padding:12,font:{size:11}}}}}
+});
+
+// Revenue Trend Line
+new Chart(document.getElementById('revenueTrendChart'),{
+  type:'line',
+  data:{
+    labels:['2020','2021','2022','2023','2024','2025','2026E'],
+    datasets:[
+      {label:'NL Entertainment',data:[320,280,450,520,590,640,710],borderColor:'#3b82f6',backgroundColor:'rgba(59,130,246,.1)',fill:true,tension:.4},
+      {label:'Corporate Events',data:[180,140,280,350,410,460,520],borderColor:'#f97316',backgroundColor:'rgba(249,115,22,.1)',fill:true,tension:.4}
+    ]
+  },
+  options:{responsive:true,maintainAspectRatio:false,scales:{y:{grid:{color:'rgba(255,255,255,.05)'},ticks:{callback:v=>'\u20ac'+v+'M'}},x:{grid:{color:'rgba(255,255,255,.03)'}}},plugins:{legend:{position:'bottom',labels:{font:{size:11}}}}}
+});
+
+// Radar Chart
+new Chart(document.getElementById('radarChart'),{
+  type:'radar',
+  data:{
+    labels:['Activiteiten','Capaciteit','Tech/VR','Prijs-Waarde','F&B Kwaliteit','Bereikbaarheid','Online Booking'],
+    datasets:[
+      {label:'Avontuurfabriek',data:[95,65,30,80,85,75,90],borderColor:'#f97316',backgroundColor:'rgba(249,115,22,.15)',pointBackgroundColor:'#f97316'},
+      {label:'UP Events',data:[70,95,85,50,75,80,60],borderColor:'#ef4444',backgroundColor:'rgba(239,68,68,.1)',pointBackgroundColor:'#ef4444'},
+      {label:'Playd\u00f4me',data:[40,35,45,70,40,55,50],borderColor:'#06b6d4',backgroundColor:'rgba(6,182,212,.1)',pointBackgroundColor:'#06b6d4'}
+    ]
+  },
+  options:{responsive:true,maintainAspectRatio:false,scales:{r:{grid:{color:'rgba(255,255,255,.08)'},angleLines:{color:'rgba(255,255,255,.06)'},ticks:{display:false},pointLabels:{font:{size:10},color:'#94a3b8'}}},plugins:{legend:{position:'bottom',labels:{font:{size:11}}}}}
+});
+
+// Revenue Model Bar
+new Chart(document.getElementById('revenueModelChart'),{
+  type:'bar',
+  data:{
+    labels:['Avontuurfabriek','UP Events','Playd\u00f4me','Koezio','Powerarea'],
+    datasets:[
+      {label:'Activiteiten',data:[45,40,55,50,60],backgroundColor:'#3b82f6'},
+      {label:'F&B/Horeca',data:[25,30,15,20,15],backgroundColor:'#f97316'},
+      {label:'Vergaderzalen',data:[15,20,5,20,5],backgroundColor:'#8b5cf6'},
+      {label:'Overig',data:[15,10,25,10,20],backgroundColor:'#10b981'}
+    ]
+  },
+  options:{responsive:true,maintainAspectRatio:false,scales:{y:{stacked:true,grid:{color:'rgba(255,255,255,.05)'},ticks:{callback:v=>v+'%'}},x:{stacked:true,grid:{display:false}}},plugins:{legend:{position:'bottom',labels:{font:{size:10}}}}}
+});
+
+// Comparison Tab Charts (lazy init)
+function initCompCharts(){
+  // Price vs Activity Scatter
+  new Chart(document.getElementById('priceActivityChart'),{
+    type:'bubble',
+    data:{
+      datasets:[
+        {label:'Avontuurfabriek',data:[{x:50,y:70,r:18}],backgroundColor:'rgba(249,115,22,.7)'},
+        {label:'UP Events',data:[{x:35,y:112,r:22}],backgroundColor:'rgba(239,68,68,.7)'},
+        {label:'Playdome',data:[{x:12,y:37,r:10}],backgroundColor:'rgba(6,182,212,.7)'},
+        {label:'Koezio',data:[{x:15,y:52,r:12}],backgroundColor:'rgba(245,158,11,.7)'},
+        {label:'Powerarea',data:[{x:8,y:30,r:8}],backgroundColor:'rgba(132,204,22,.7)'},
+        {label:'TopGolf',data:[{x:5,y:60,r:20}],backgroundColor:'rgba(20,184,166,.7)'}
+      ]
+    },
+    options:{responsive:true,maintainAspectRatio:false,scales:{x:{title:{display:true,text:'Aantal Activiteiten',color:'#94a3b8'},grid:{color:'rgba(255,255,255,.05)'}},y:{title:{display:true,text:'Prijs per Persoon (\u20ac)',color:'#94a3b8'},grid:{color:'rgba(255,255,255,.05)'}}},plugins:{legend:{position:'bottom',labels:{font:{size:10}}}}}
+  });
+  // Capacity Bar
+  new Chart(document.getElementById('capacityChart'),{
+    type:'bar',
+    data:{
+      labels:['UP Events','Avontuurfabriek','Koezio','Playdome','Powerarea','Jump XL'],
+      datasets:[{label:'Max Capaciteit',data:[5000,750,400,300,150,120],backgroundColor:['#ef4444','#f97316','#f59e0b','#06b6d4','#84cc16','#a855f7'],borderRadius:6}]
+    },
+    options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,scales:{x:{grid:{color:'rgba(255,255,255,.05)'}},y:{grid:{display:false}}},plugins:{legend:{display:false}}}
+  });
+}
+
+// Opportunities Tab Charts (lazy init)
+function initOppCharts(){
+  // Growth Projection
+  new Chart(document.getElementById('growthChart'),{
+    type:'line',
+    data:{
+      labels:['2025 Basis','2026 Fase 1-2','2027 Fase 3','2028 Matuur'],
+      datasets:[{
+        label:'Conservatief',data:[4.5,5.8,7.5,9],borderColor:'#10b981',backgroundColor:'rgba(16,185,129,.1)',fill:true,tension:.3
+      },{
+        label:'Optimistisch',data:[4.5,6.5,9,12],borderColor:'#3b82f6',backgroundColor:'rgba(59,130,246,.1)',fill:true,tension:.3,borderDash:[5,5]
+      }]
+    },
+    options:{responsive:true,maintainAspectRatio:false,scales:{y:{grid:{color:'rgba(255,255,255,.05)'},ticks:{callback:v=>'\u20ac'+v+'M'}},x:{grid:{color:'rgba(255,255,255,.03)'}}},plugins:{legend:{position:'bottom',labels:{font:{size:11}}}}}
+  });
+  // ROI Bar
+  new Chart(document.getElementById('roiChart'),{
+    type:'bar',
+    data:{
+      labels:['Fase 1','Fase 2','Fase 3'],
+      datasets:[
+        {label:'Investering (\u20acK)',data:[120,67,185],backgroundColor:'rgba(239,68,68,.6)',borderRadius:6},
+        {label:'Jaar Opbrengst (\u20acK)',data:[480,160,450],backgroundColor:'rgba(16,185,129,.6)',borderRadius:6}
+      ]
+    },
+    options:{responsive:true,maintainAspectRatio:false,scales:{y:{grid:{color:'rgba(255,255,255,.05)'},ticks:{callback:v=>'\u20ac'+v+'K'}},x:{grid:{display:false}}},plugins:{legend:{position:'bottom',labels:{font:{size:11}}}}}
+  });
+}
+
+// Staggered Card Animations
+document.querySelectorAll('.kpi-card,.stat-card,.chart-card,.competitor-card,.swot-card,.strategy-card,.phase-card').forEach((card,i)=>{
+  card.style.opacity='0';
+  card.style.transform='translateY(20px)';
+  card.style.transition='opacity .5s ease, transform .5s ease';
+  setTimeout(()=>{card.style.opacity='1';card.style.transform='translateY(0)';},80*i);
+});
+</html>
