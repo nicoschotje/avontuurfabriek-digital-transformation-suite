@@ -6,6 +6,8 @@
 <title>AF-02 Operations Dashboard — Avontuurfabriek</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="dashboards/AF-02-Operations-Dashboard.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 <!-- HEADER -->
@@ -346,5 +348,66 @@
 </div>
 </main>
 </div>
+<script>
+// Live clocks
+function updateClocks(){
+  const now=new Date();
+  const ph=new Date(now.toLocaleString('en-US',{timeZone:'Asia/Manila'}));
+  const nl=new Date(now.toLocaleString('en-US',{timeZone:'Europe/Amsterdam'}));
+  const fmt=d=>d.toLocaleTimeString('nl-NL',{hour:'2-digit',minute:'2-digit'});
+  document.getElementById('phTime').textContent=fmt(ph);
+  document.getElementById('nlTime').textContent=fmt(nl);
+}
+updateClocks();
+setInterval(updateClocks,1000);
+
+// Revenue chart
+const rCtx=document.getElementById('revenueChart');
+if(rCtx){
+  new Chart(rCtx,{
+    type:'bar',
+    data:{
+      labels:['di 12','wo 13','do 14','vr 15','za 16','zo 17','ma 18'],
+      datasets:[{
+        label:'Omzet',
+        data:[14200,16800,12400,19200,22100,18750,16700],
+        backgroundColor:'rgba(249,115,22,0.6)',
+        borderColor:'#f97316',
+        borderWidth:1,
+        borderRadius:6
+      }]
+    },
+    options:{
+      responsive:true,
+      plugins:{legend:{display:false}},
+      scales:{
+        y:{beginAtZero:true,grid:{color:'rgba(255,255,255,0.05)'},ticks:{color:'#94a3b8',callback:v=>'\u20AC'+v.toLocaleString()}},
+        x:{grid:{display:false},ticks:{color:'#94a3b8'}}
+      }
+    }
+  });
+}
+
+// Bezetting chart
+const bCtx=document.getElementById('bezettingChart');
+if(bCtx){
+  new Chart(bCtx,{
+    type:'doughnut',
+    data:{
+      labels:['Bezet','Vrij'],
+      datasets:[{
+        data:[84,16],
+        backgroundColor:['#f97316','rgba(255,255,255,0.1)'],
+        borderWidth:0
+      }]
+    },
+    options:{
+      responsive:true,
+      cutout:'75%',
+      plugins:{legend:{display:false}}
+    }
+  });
+}
+</script>
 </body>
 </html>
