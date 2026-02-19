@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Investor Visual Manual — Operations & Communication Integration</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',sans-serif;background:#0f172a;color:#f1f5f9}
+.glass{background:rgba(51,65,85,0.5);backdrop-filter:blur(16px);border:1px solid rgba(148,163,184,0.1);border-radius:16px}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulse-glow{0%,100%{box-shadow:0 0 8px rgba(249,115,22,0.3)}50%{box-shadow:0 0 24px rgba(249,115,22,0.6)}}
+@keyframes flow-right{0%{transform:translateX(-8px);opacity:0.3}50%{opacity:1}100%{transform:translateX(8px);opacity:0.3}}
+@keyframes flow-down{0%{transform:translateY(-8px);opacity:0.3}50%{opacity:1}100%{transform:translateY(8px);opacity:0.3}}
+@keyframes orbit{0%{transform:rotate(0deg) translateX(140px) rotate(0deg)}100%{transform:rotate(360deg) translateX(140px) rotate(-360deg)}}
+.fade-up{animation:fadeUp .6s ease-out forwards;opacity:0}
+.s1{animation-delay:.1s}.s2{animation-delay:.2s}.s3{animation-delay:.3s}.s4{animation-delay:.4s}.s5{animation-delay:.5s}
+.node{transition:all .3s;cursor:pointer}
+.node:hover{transform:scale(1.05);box-shadow:0 0 30px rgba(249,115,22,0.4)}
+.flow-arrow{animation:flow-right 2s ease-in-out infinite}
+.flow-arrow-down{animation:flow-down 2s ease-in-out infinite}
+.pulse{animation:pulse-glow 2s ease-in-out infinite}
+section{scroll-margin-top:80px}
+.tab-btn{padding:10px 24px;border-radius:999px;font-size:.85rem;font-weight:600;cursor:pointer;border:1px solid rgba(148,163,184,0.2);background:transparent;color:#94a3b8;transition:all .2s}
+.tab-btn.active,.tab-btn:hover{background:#f97316;color:#fff;border-color:#f97316}
+.step-num{width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#f97316,#ea580c);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:1.1rem;flex-shrink:0}
+</style>
+</head>
+<body>
+
+<!-- Sticky Nav -->
+<nav class="fixed top-0 left-0 right-0 z-50" style="background:rgba(15,23,42,0.95);backdrop-filter:blur(20px);border-bottom:1px solid rgba(148,163,184,0.1)">
+<div class="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
+<div class="flex items-center gap-3"><div class="w-10 h-10 rounded-xl bg-gradient-to-br from-orange-500 to-orange-600 flex items-center justify-center font-black text-white">AF</div><span class="font-bold text-white">Investor Visual Manual</span></div>
+<div class="hidden md:flex items-center gap-6 text-sm">
+<a href="#overview" class="text-slate-400 hover:text-white transition">Overview</a>
+<a href="#operations" class="text-slate-400 hover:text-white transition">Operations</a>
+<a href="#comms" class="text-slate-400 hover:text-white transition">Communication</a>
+<a href="#integration" class="text-slate-400 hover:text-white transition">Integration</a>
+<a href="#workflow" class="text-slate-400 hover:text-white transition">Daily Workflow</a>
+<a href="#expansion" class="text-slate-400 hover:text-white transition">Expansion</a>
+</div>
+<a href="AF-05-Business-Plan-Pitch.html" class="px-5 py-2 bg-orange-500 hover:bg-orange-600 text-white font-semibold rounded-full text-sm transition">View Business Plan</a>
+</div>
+</nav>
+
+<!-- HERO -->
+<section class="min-h-[70vh] flex flex-col items-center justify-center text-center px-6 pt-24 pb-12" style="background:linear-gradient(135deg,rgba(15,23,42,0.95),rgba(249,115,22,0.1))">
+<div class="fade-up s1 inline-block px-5 py-2 rounded-full text-xs font-bold tracking-widest text-orange-300 border border-orange-500/30 bg-orange-500/10 mb-6">INVESTOR VISUAL MANUAL</div>
+<h1 class="fade-up s2 text-4xl md:text-6xl font-black max-w-4xl leading-tight">How <span class="text-orange-500">Operations</span> & <span class="text-blue-400">Communication</span> Work Together</h1>
+<p class="fade-up s3 text-lg text-slate-400 mt-6 max-w-2xl">A visual guide showing how the AF-02 Operations Dashboard and AF-03 Communication Hub integrate to give remote owners full real-time control of their business — and how this model scales to 100+ MSME clients.</p>
+<div class="fade-up s4 flex flex-wrap gap-4 mt-8 justify-center">
+<div class="glass px-6 py-3 flex items-center gap-3"><span class="text-2xl">&#x1F4CA;</span><div class="text-left"><div class="text-xs text-slate-500">AF-02</div><div class="font-bold text-sm">Operations Dashboard</div></div></div>
+<div class="text-orange-400 font-bold text-xl self-center">↔</div>
+<div class="glass px-6 py-3 flex items-center gap-3"><span class="text-2xl">&#x1F4AC;</span><div class="text-left"><div class="text-xs text-slate-500">AF-03</div><div class="font-bold text-sm">Communication Hub</div></div></div>
+</div>
+<div class="fade-up s5 grid grid-cols-2 md:grid-cols-4 gap-4 mt-12 max-w-3xl w-full">
+<div class="glass p-4 text-center"><div class="text-2xl font-black text-orange-500">2</div><div class="text-xs text-slate-400 mt-1">Timezones Bridged</div></div>
+<div class="glass p-4 text-center"><div class="text-2xl font-black text-blue-400">6</div><div class="text-xs text-slate-400 mt-1">Team Members Connected</div></div>
+<div class="glass p-4 text-center"><div class="text-2xl font-black text-green-400">24/7</div><div class="text-xs text-slate-400 mt-1">Real-time Visibility</div></div>
+<div class="glass p-4 text-center"><div class="text-2xl font-black text-purple-400">100+</div><div class="text-xs text-slate-400 mt-1">Scalable Clients</div></div>
+</div>
+</section>
+
+<!-- SECTION 1: SYSTEM OVERVIEW -->
+<section id="overview" class="py-20 px-6">
+<div class="max-w-6xl mx-auto">
+<div class="text-center mb-16">
+<div class="text-orange-400 font-bold text-sm tracking-wider mb-3">SECTION 1</div>
+<h2 class="text-4xl font-black">System Architecture Overview</h2>
+<p class="text-slate-400 mt-3 max-w-xl mx-auto">Two dashboards that work as one integrated system, bridging the Philippines and Netherlands in real-time.</p>
+</div>
+<!-- Architecture Diagram -->
+<div class="glass p-8 md:p-12">
+<div class="grid grid-cols-1 md:grid-cols-7 gap-4 items-center">
+<!-- Owner PH -->
+<div class="node glass p-5 text-center rounded-2xl border-orange-500/30 col-span-1">
+<div class="text-3xl mb-2">&#x1F1F5;&#x1F1ED;</div>
+<div class="font-bold text-sm">Owner</div>
+<div class="text-xs text-slate-400">Philippines</div>
+<div class="text-xs text-orange-400 mt-1">Mike Olivier</div>
+</div>
+<!-- Arrow -->
+<div class="text-center col-span-1"><div class="text-orange-400 text-2xl flow-arrow">→</div><div class="text-xs text-slate-500 mt-1">Views & Decides</div></div>
+<!-- Operations Dashboard -->
+<div class="node glass p-5 text-center rounded-2xl border-orange-500/30 pulse col-span-1" style="background:rgba(249,115,22,0.1)">
+<div class="text-3xl mb-2">&#x1F4CA;</div>
+<div class="font-bold text-sm text-orange-400">AF-02</div>
+<div class="text-xs">Operations Dashboard</div>
+<div class="text-[10px] text-slate-500 mt-1">KPIs • Revenue • Bookings</div>
+</div>
+<!-- Bi-directional -->
+<div class="text-center col-span-1"><div class="text-green-400 text-2xl">⇄</div><div class="text-xs text-green-400 mt-1">Data Sync</div></div>
+<!-- Communication Hub -->
+<div class="node glass p-5 text-center rounded-2xl border-blue-500/30 pulse" style="background:rgba(59,130,246,0.1)">
+<div class="text-3xl mb-2">&#x1F4AC;</div>
+<div class="font-bold text-sm text-blue-400">AF-03</div>
+<div class="text-xs">Communication Hub</div>
+<div class="text-[10px] text-slate-500 mt-1">Reports • Tasks • Messages</div>
+</div>
+<!-- Arrow -->
+<div class="text-center col-span-1"><div class="text-blue-400 text-2xl flow-arrow">→</div><div class="text-xs text-slate-500 mt-1">Reports & Updates</div></div>
+<!-- NL Team -->
+<div class="node glass p-5 text-center rounded-2xl border-blue-500/30 col-span-1">
+<div class="text-3xl mb-2">&#x1F1F3;&#x1F1F1;</div>
+<div class="font-bold text-sm">On-site Team</div>
+<div class="text-xs text-slate-400">Netherlands</div>
+<div class="text-xs text-blue-400 mt-1">5 Staff Members</div>
+</div>
+</div>
+<!-- Data Flow Labels -->
+<div class="grid grid-cols-3 gap-4 mt-8 text-center">
+<div class="glass p-4 rounded-xl"><div class="text-green-400 font-bold text-lg">↑</div><div class="text-xs text-slate-400">Revenue, bookings, KPIs flow from NL operations to PH owner view</div></div>
+<div class="glass p-4 rounded-xl"><div class="text-orange-400 font-bold text-lg">⇄</div><div class="text-xs text-slate-400">Daily reports, tasks, and messages sync between both dashboards</div></div>
+<div class="glass p-4 rounded-xl"><div class="text-blue-400 font-bold text-lg">↓</div><div class="text-xs text-slate-400">Owner decisions, approvals, and strategic directives flow to NL team</div></div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- SECTION 2: OPERATIONS DASHBOARD -->
+<section id="operations" class="py-20 px-6" style="background:rgba(249,115,22,0.03)">
+<div class="max-w-6xl mx-auto">
+<div class="text-center mb-16">
+<div class="text-orange-400 font-bold text-sm tracking-wider mb-3">SECTION 2</div>
+<h2 class="text-4xl font-black">&#x1F4CA; Operations Dashboard (AF-02)</h2>
+<p class="text-slate-400 mt-3 max-w-xl mx-auto">The owner's morning briefing — open from the Philippines and see everything that happened yesterday in Loosdrecht.</p>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+<!-- Left: Feature breakdown -->
+<div class="space-y-6">
+<div class="glass p-6 flex gap-4 node"><div class="step-num">1</div><div><h3 class="font-bold text-lg">Dual Timezone Clocks</h3><p class="text-slate-400 text-sm mt-1">PH and NL time always visible. Owner knows instantly what business hours the team is in.</p></div></div>
+<div class="glass p-6 flex gap-4 node"><div class="step-num">2</div><div><h3 class="font-bold text-lg">Revenue KPIs at a Glance</h3><p class="text-slate-400 text-sm mt-1">Yesterday's revenue (€18,750), bookings (8 total), occupancy rate (84%), and customer satisfaction (4.7/5) — all in one view.</p></div></div>
+<div class="glass p-6 flex gap-4 node"><div class="step-num">3</div><div><h3 class="font-bold text-lg">7-Day Revenue Chart</h3><p class="text-slate-400 text-sm mt-1">Visual bar chart showing daily revenue trends over the past week, with segment breakdown (Zakelijk 52%, Particulier 31%, Kids 17%).</p></div></div>
+<div class="glass p-6 flex gap-4 node"><div class="step-num">4</div><div><h3 class="font-bold text-lg">Live Booking Table</h3><p class="text-slate-400 text-sm mt-1">Complete list of yesterday's bookings with company name, activities, headcount, time, revenue, and completion status.</p></div></div>
+<div class="glass p-6 flex gap-4 node"><div class="step-num">5</div><div><h3 class="font-bold text-lg">Equipment & Staff Status</h3><p class="text-slate-400 text-sm mt-1">Real-time status of all activities (LED Karten, Lasergame, Bowlen, Escape Rooms) plus staff roster for the day.</p></div></div>
+<div class="glass p-6 flex gap-4 node"><div class="step-num">6</div><div><h3 class="font-bold text-lg">Financial Overview</h3><p class="text-slate-400 text-sm mt-1">Month-to-date vs target (€287k/€320k = 89%), outstanding invoices, expected weekly revenue, YTD performance (+18% vs last year).</p></div></div>
+</div>
+<!-- Right: Visual mockup -->
+<div class="glass p-6">
+<div class="text-xs text-slate-500 mb-4 flex items-center justify-between"><span>AF-02 Operations Dashboard Preview</span><a href="AF-02-Operations-Dashboard.html" class="text-orange-400 hover:underline">View Live →</a></div>
+<div class="rounded-xl overflow-hidden border border-slate-700">
+<div class="bg-slate-800 p-4">
+<div class="flex justify-between items-center mb-3"><div class="flex items-center gap-2"><div class="w-6 h-6 rounded bg-orange-500 text-[8px] flex items-center justify-center font-black text-white">AF</div><span class="text-xs font-bold">Operations Dashboard</span></div><div class="flex gap-3 text-[10px]"><span class="text-slate-500">PH 16:16</span><span class="text-slate-500">NL 09:16</span><span class="text-green-400">● Alles Goed</span></div></div>
+<div class="text-lg font-bold mb-4">Goedemorgen, <span class="text-orange-400">Mike</span> 👋</div>
+<div class="grid grid-cols-4 gap-2 mb-4">
+<div class="bg-slate-700/50 p-2 rounded-lg"><div class="text-[8px] text-slate-500">Omzet</div><div class="font-black text-sm">€18,750</div><div class="text-green-400 text-[8px]">+12%</div></div>
+<div class="bg-slate-700/50 p-2 rounded-lg"><div class="text-[8px] text-slate-500">Boekingen</div><div class="font-black text-sm">8</div><div class="text-blue-400 text-[8px]">5Z 2P 1K</div></div>
+<div class="bg-slate-700/50 p-2 rounded-lg"><div class="text-[8px] text-slate-500">Bezetting</div><div class="font-black text-sm">84%</div><div class="text-green-400 text-[8px]">Target: 75% ✔</div></div>
+<div class="bg-slate-700/50 p-2 rounded-lg"><div class="text-[8px] text-slate-500">Tevredenheid</div><div class="font-black text-sm">4.7<span class="text-xs">/5</span></div><div class="text-yellow-400 text-[8px]">★★★★★</div></div>
+</div>
+<div class="bg-slate-700/50 p-3 rounded-lg mb-3">
+<div class="text-[10px] font-bold mb-2">Omzet 7 Dagen</div>
+<div class="flex items-end gap-1 h-16">
+<div class="bg-orange-500/60 rounded-t" style="width:14%;height:45%"></div>
+<div class="bg-orange-500/60 rounded-t" style="width:14%;height:50%"></div>
+<div class="bg-orange-500/60 rounded-t" style="width:14%;height:55%"></div>
+<div class="bg-orange-500 rounded-t" style="width:14%;height:70%"></div>
+<div class="bg-orange-500 rounded-t" style="width:14%;height:90%"></div>
+<div class="bg-orange-500 rounded-t" style="width:14%;height:100%"></div>
+<div class="bg-orange-500/80 rounded-t" style="width:14%;height:65%"></div>
+</div>
+</div>
+<div class="bg-slate-700/50 p-2 rounded-lg">
+<div class="text-[10px] font-bold mb-1">Vandaag's Boekingen</div>
+<div class="space-y-1">
+<div class="flex justify-between text-[8px]"><span>KPMG Nederland • 45 pers.</span><span class="text-green-400">09:00</span></div>
+<div class="flex justify-between text-[8px]"><span>Deloitte Amsterdam • 120 pers.</span><span class="text-purple-400">VIP 15:00</span></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- SECTION 3: COMMUNICATION HUB -->
+<section id="comms" class="py-20 px-6">
+<div class="max-w-6xl mx-auto">
+<div class="text-center mb-16">
+<div class="text-blue-400 font-bold text-sm tracking-wider mb-3">SECTION 3</div>
+<h2 class="text-4xl font-black">&#x1F4AC; Communication Hub (AF-03)</h2>
+<p class="text-slate-400 mt-3 max-w-xl mx-auto">The central nervous system connecting the PH owner with the NL team — daily reports, messages, tasks, documents, and agenda in one place.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<div class="glass p-6 node"><div class="text-3xl mb-3">&#x1F4CB;</div><h3 class="font-bold text-lg">Daily Reports</h3><p class="text-slate-400 text-sm mt-2">NL Manager submits end-of-day reports with revenue, highlights, issues, staff notes, and tomorrow's forecast. Owner reviews each morning from PH.</p><div class="mt-3 flex gap-2"><span class="px-2 py-1 bg-green-500/20 text-green-400 text-[10px] rounded-full">Omzet</span><span class="px-2 py-1 bg-blue-500/20 text-blue-400 text-[10px] rounded-full">Issues</span><span class="px-2 py-1 bg-purple-500/20 text-purple-400 text-[10px] rounded-full">Staff</span></div></div>
+<div class="glass p-6 node"><div class="text-3xl mb-3">&#x1F4AC;</div><h3 class="font-bold text-lg">Team Messaging</h3><p class="text-slate-400 text-sm mt-2">Direct messaging with category filters (Urgent, Financial, Personnel). Every team member has a profile with role and timezone visibility.</p><div class="mt-3 flex gap-2"><span class="px-2 py-1 bg-red-500/20 text-red-400 text-[10px] rounded-full">Urgent</span><span class="px-2 py-1 bg-yellow-500/20 text-yellow-400 text-[10px] rounded-full">Financial</span><span class="px-2 py-1 bg-cyan-500/20 text-cyan-400 text-[10px] rounded-full">Personnel</span></div></div>
+<div class="glass p-6 node"><div class="text-3xl mb-3">&#x2705;</div><h3 class="font-bold text-lg">Task Board</h3><p class="text-slate-400 text-sm mt-2">Kanban-style task management. Assign tasks to team members, set priorities and deadlines. Track completion in real-time across timezones.</p><div class="mt-3 flex gap-2"><span class="px-2 py-1 bg-orange-500/20 text-orange-400 text-[10px] rounded-full">Assign</span><span class="px-2 py-1 bg-green-500/20 text-green-400 text-[10px] rounded-full">Track</span><span class="px-2 py-1 bg-blue-500/20 text-blue-400 text-[10px] rounded-full">Complete</span></div></div>
+<div class="glass p-6 node"><div class="text-3xl mb-3">&#x1F4C1;</div><h3 class="font-bold text-lg">Document Library</h3><p class="text-slate-400 text-sm mt-2">Central document repository for contracts, SOPs, financial reports, and marketing materials. Version-controlled and accessible to all team members.</p></div>
+<div class="glass p-6 node"><div class="text-3xl mb-3">&#x1F4C5;</div><h3 class="font-bold text-lg">Shared Agenda</h3><p class="text-slate-400 text-sm mt-2">Combined calendar showing NL events, bookings, team meetings, and PH-NL sync calls. Timezone-aware scheduling prevents conflicts.</p></div>
+<div class="glass p-6 node"><div class="text-3xl mb-3">&#x1F465;</div><h3 class="font-bold text-lg">Team Directory</h3><p class="text-slate-400 text-sm mt-2">6 team members with roles, online status, and quick actions. Always know who's available: Mike (Owner/PH), Jan (Manager/NL), Sophie, Lars, Anna, Peter.</p></div>
+</div>
+</div>
+</section>
+
+<!-- SECTION 4: INTEGRATION FLOW -->
+<section id="integration" class="py-20 px-6" style="background:rgba(59,130,246,0.03)">
+<div class="max-w-6xl mx-auto">
+<div class="text-center mb-16">
+<div class="text-green-400 font-bold text-sm tracking-wider mb-3">SECTION 4</div>
+<h2 class="text-4xl font-black">&#x1F504; How They Integrate</h2>
+<p class="text-slate-400 mt-3 max-w-xl mx-auto">The Operations Dashboard and Communication Hub share data in real-time, creating a closed feedback loop between owner and team.</p>
+</div>
+<!-- Integration Diagram -->
+<div class="glass p-8 md:p-12">
+<h3 class="font-bold text-xl text-center mb-8">Data Integration Flow</h3>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- AF-02 Column -->
+<div class="space-y-4">
+<div class="text-center mb-4"><div class="inline-block px-4 py-2 bg-orange-500/20 text-orange-400 font-bold rounded-full text-sm">AF-02 Operations Dashboard</div></div>
+<div class="glass p-4 rounded-xl text-sm"><span class="text-orange-400 font-bold">OUT:</span> Revenue data, KPIs, booking status, equipment health, staff roster</div>
+<div class="glass p-4 rounded-xl text-sm"><span class="text-blue-400 font-bold">IN:</span> Owner comments on financials, approved budgets, strategic targets</div>
+<div class="glass p-4 rounded-xl text-sm bg-orange-500/10 border-orange-500/30"><span class="font-bold">Key Metric:</span> €18,750 daily revenue triggers automatic daily report to Communication Hub</div>
+</div>
+<!-- Sync Column -->
+<div class="flex flex-col items-center justify-center gap-4">
+<div class="glass p-6 text-center rounded-2xl pulse" style="background:rgba(16,185,129,0.1);border-color:rgba(16,185,129,0.3)">
+<div class="text-4xl mb-2">&#x1F504;</div>
+<div class="font-bold text-green-400">Real-time Sync</div>
+<div class="text-xs text-slate-400 mt-2">Shared data layer</div>
+</div>
+<div class="space-y-3 w-full">
+<div class="glass p-3 rounded-lg text-center text-xs"><span class="text-orange-400">▶</span> Revenue data auto-populates daily reports</div>
+<div class="glass p-3 rounded-lg text-center text-xs"><span class="text-blue-400">▶</span> Issues from reports trigger task creation</div>
+<div class="glass p-3 rounded-lg text-center text-xs"><span class="text-green-400">▶</span> Booking confirmations update both views</div>
+<div class="glass p-3 rounded-lg text-center text-xs"><span class="text-purple-400">▶</span> Owner responses in Hub reflect on Dashboard</div>
+</div>
+</div>
+<!-- AF-03 Column -->
+<div class="space-y-4">
+<div class="text-center mb-4"><div class="inline-block px-4 py-2 bg-blue-500/20 text-blue-400 font-bold rounded-full text-sm">AF-03 Communication Hub</div></div>
+<div class="glass p-4 rounded-xl text-sm"><span class="text-blue-400 font-bold">OUT:</span> Daily reports, task assignments, messages, document updates, calendar events</div>
+<div class="glass p-4 rounded-xl text-sm"><span class="text-orange-400 font-bold">IN:</span> KPI data from operations, booking details, customer reviews, equipment alerts</div>
+<div class="glass p-4 rounded-xl text-sm bg-blue-500/10 border-blue-500/30"><span class="font-bold">Key Feature:</span> Manager daily report includes operations data and free-text context that no dashboard alone can provide</div>
+</div>
+</div>
+</div>
+<!-- Integration Benefits -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-4 mt-12">
+<div class="glass p-5 text-center node"><div class="text-3xl mb-2">&#x1F441;</div><h4 class="font-bold text-sm">Complete Visibility</h4><p class="text-xs text-slate-400 mt-1">Owner sees numbers AND context. Not just €18K revenue, but why it happened and what to expect tomorrow.</p></div>
+<div class="glass p-5 text-center node"><div class="text-3xl mb-2">&#x26A1;</div><h4 class="font-bold text-sm">Instant Response</h4><p class="text-xs text-slate-400 mt-1">Issue spotted in Operations? Create a task in Communication Hub with one click. No email delays.</p></div>
+<div class="glass p-5 text-center node"><div class="text-3xl mb-2">&#x1F512;</div><h4 class="font-bold text-sm">Audit Trail</h4><p class="text-xs text-slate-400 mt-1">Every decision, report, and message is logged with timestamps. Full accountability across timezones.</p></div>
+<div class="glass p-5 text-center node"><div class="text-3xl mb-2">&#x1F3AF;</div><h4 class="font-bold text-sm">Aligned Goals</h4><p class="text-xs text-slate-400 mt-1">KPI targets in Operations match task priorities in Communication. Everyone works toward the same numbers.</p></div>
+</div>
+</div>
+</section>
+
+<!-- SECTION 5: DAILY WORKFLOW -->
+<section id="workflow" class="py-20 px-6">
+<div class="max-w-6xl mx-auto">
+<div class="text-center mb-16">
+<div class="text-purple-400 font-bold text-sm tracking-wider mb-3">SECTION 5</div>
+<h2 class="text-4xl font-black">&#x1F4C6; A Day in the Life</h2>
+<p class="text-slate-400 mt-3 max-w-xl mx-auto">How the owner in the Philippines manages a business in the Netherlands using both dashboards every single day.</p>
+</div>
+<div class="relative">
+<!-- Timeline -->
+<div class="absolute left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-orange-500 via-blue-500 to-green-500 hidden md:block" style="transform:translateX(-50%)"></div>
+<div class="space-y-8">
+<!-- Step 1 -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 relative">
+<div class="glass p-6 node md:text-right"><div class="text-xs text-orange-400 font-bold mb-2">07:00 PH / 00:00 NL</div><h3 class="font-bold text-lg">&#x2615; Morning Review (Operations Dashboard)</h3><p class="text-slate-400 text-sm mt-2">Mike opens AF-02 from Makati. Reviews yesterday's €18,750 revenue, 8 bookings, 84% occupancy. Checks equipment status — spots Bowlingbaan 3 needs repair.</p></div>
+<div class="hidden md:block"></div>
+</div>
+<!-- Step 2 -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="hidden md:block"></div>
+<div class="glass p-6 node"><div class="text-xs text-blue-400 font-bold mb-2">07:30 PH / 00:30 NL</div><h3 class="font-bold text-lg">&#x1F4AC; Read Daily Report (Communication Hub)</h3><p class="text-slate-400 text-sm mt-2">Switches to AF-03. Reads Jan's daily report: Accenture teambuilding was a big success, new Escape Room fully booked for the first time. Clicks "✅ Gezien" to acknowledge.</p></div>
+</div>
+<!-- Step 3 -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="glass p-6 node md:text-right"><div class="text-xs text-orange-400 font-bold mb-2">08:00 PH / 01:00 NL</div><h3 class="font-bold text-lg">&#x26A0;&#xFE0F; Create Maintenance Task</h3><p class="text-slate-400 text-sm mt-2">From the Operations Dashboard, Mike sees Bowlingbaan 3 alert. Opens Communication Hub, creates a priority task for Peter (Technisch Beheer) with deadline: today.</p></div>
+<div class="hidden md:block"></div>
+</div>
+<!-- Step 4 -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="hidden md:block"></div>
+<div class="glass p-6 node"><div class="text-xs text-green-400 font-bold mb-2">09:00 NL (16:00 PH)</div><h3 class="font-bold text-lg">&#x1F3E2; NL Team Starts Working</h3><p class="text-slate-400 text-sm mt-2">Jan opens Communication Hub and sees Mike's task for Peter. Assigns it during morning standup. Sophie checks today's 3 bookings on the Operations Dashboard. Team is aligned.</p></div>
+</div>
+<!-- Step 5 -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="glass p-6 node md:text-right"><div class="text-xs text-purple-400 font-bold mb-2">17:00 NL (00:00 PH)</div><h3 class="font-bold text-lg">&#x1F4CB; End-of-Day Report</h3><p class="text-slate-400 text-sm mt-2">Jan submits daily report in AF-03 with today's revenue, highlights, resolved issues, and tomorrow's forecast. Peter marks Bowlingbaan 3 task as completed. The cycle repeats.</p></div>
+<div class="hidden md:block"></div>
+</div>
+</div>
+</div>
+<div class="glass p-6 text-center mt-12">
+<div class="text-green-400 font-bold text-lg mb-2">&#x267B;&#xFE0F; The cycle repeats every day — zero information gaps, zero WhatsApp chaos</div>
+<p class="text-slate-400 text-sm">This workflow runs on autopilot. Owner spends just 30–45 minutes per morning to have complete control of a business 10,000 km away.</p>
+</div>
+</div>
+</section>
+
+<!-- SECTION 6: EXPANSION POSSIBILITIES -->
+<section id="expansion" class="py-20 px-6" style="background:linear-gradient(135deg,rgba(139,92,246,0.05),rgba(249,115,22,0.05))">
+<div class="max-w-6xl mx-auto">
+<div class="text-center mb-16">
+<div class="text-purple-400 font-bold text-sm tracking-wider mb-3">SECTION 6</div>
+<h2 class="text-4xl font-black">&#x1F680; Expansion Possibilities</h2>
+<p class="text-slate-400 mt-3 max-w-xl mx-auto">Avontuurfabriek is the proof-of-concept. This same system templates to any business where an owner manages remotely.</p>
+</div>
+<!-- Phase Roadmap -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-16">
+<div class="glass p-6 node border-t-4 border-orange-500"><div class="text-xs text-orange-400 font-bold mb-3">PHASE 1 • NOW</div><h3 class="font-bold text-lg mb-2">Proof of Concept</h3><p class="text-slate-400 text-sm">Avontuurfabriek uses AF-02 + AF-03 daily. Working product, proven workflow, real revenue tracking.</p><div class="mt-4 px-3 py-2 bg-green-500/20 text-green-400 text-xs rounded-lg font-bold text-center">✓ LIVE &amp; OPERATIONAL</div></div>
+<div class="glass p-6 node border-t-4 border-blue-500"><div class="text-xs text-blue-400 font-bold mb-3">PHASE 2 • Q2 2026</div><h3 class="font-bold text-lg mb-2">Template System</h3><p class="text-slate-400 text-sm">Convert AF dashboards into industry templates: Restaurant, Hotel, Retail, Gym, Clinic. Each template pre-configured with relevant KPIs.</p><div class="mt-4 space-y-1"><div class="flex items-center gap-2 text-xs text-slate-400"><span class="text-orange-400">▸</span>Restaurant: covers, avg check, food cost</div><div class="flex items-center gap-2 text-xs text-slate-400"><span class="text-blue-400">▸</span>Hotel: occupancy, ADR, RevPAR</div><div class="flex items-center gap-2 text-xs text-slate-400"><span class="text-green-400">▸</span>Retail: foot traffic, conversion, basket</div></div></div>
+<div class="glass p-6 node border-t-4 border-purple-500"><div class="text-xs text-purple-400 font-bold mb-3">PHASE 3 • Q3 2026</div><h3 class="font-bold text-lg mb-2">PH MSME Launch</h3><p class="text-slate-400 text-sm">Target Filipino MSMEs (10-200 employees) in Metro Manila. Price point: ₱15,000-₱50,000 ($270-$900) per client setup.</p><div class="mt-4 space-y-1"><div class="flex items-center gap-2 text-xs text-slate-400"><span class="text-orange-400">▸</span>1M+ MSMEs in Philippines</div><div class="flex items-center gap-2 text-xs text-slate-400"><span class="text-blue-400">▸</span>77% want digital tools</div><div class="flex items-center gap-2 text-xs text-slate-400"><span class="text-green-400">▸</span>Only 16% currently have them</div></div></div>
+<div class="glass p-6 node border-t-4 border-green-500"><div class="text-xs text-green-400 font-bold mb-3">PHASE 4 • 2027</div><h3 class="font-bold text-lg mb-2">Scale to 100+</h3><p class="text-slate-400 text-sm">100+ clients in Year 1 of PH operations. Revenue potential: $27,000-$90,000 from dashboard setups alone, plus monthly SaaS fees.</p><div class="mt-4 px-3 py-2 bg-purple-500/20 text-purple-400 text-xs rounded-lg font-bold text-center">₱5M+ Revenue Potential</div></div>
+</div>
+<!-- Expansion Use Cases -->
+<h3 class="font-bold text-2xl text-center mb-8">Who Can Use This System?</h3>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+<div class="glass p-6 node">
+<div class="text-2xl mb-3">&#x1F3E8;</div>
+<h4 class="font-bold">OFW Business Owners</h4>
+<p class="text-slate-400 text-sm mt-2">10M+ OFWs worldwide who own businesses back in PH. Sari-sari stores, restaurants, rental properties — all need remote visibility. This system gives them their own "Operations + Communication" setup.</p>
+<div class="mt-3 text-xs text-orange-400 font-bold">Market: 2.2M OFW entrepreneurs</div>
+</div>
+<div class="glass p-6 node">
+<div class="text-2xl mb-3">&#x1F3ED;</div>
+<h4 class="font-bold">Multi-branch Businesses</h4>
+<p class="text-slate-400 text-sm mt-2">Any business with HQ in one city and branches elsewhere. Restaurant chains, retail franchises, service companies. Each branch gets its own dashboard pair.</p>
+<div class="mt-3 text-xs text-blue-400 font-bold">Market: 100,000+ multi-location SMEs</div>
+</div>
+<div class="glass p-6 node">
+<div class="text-2xl mb-3">&#x1F30F;</div>
+<h4 class="font-bold">NL/BE MKB Consulting</h4>
+<p class="text-slate-400 text-sm mt-2">Dutch and Belgian SMEs looking for affordable digital transformation. Same dashboards, adapted for European market. €2,500-€10,000 per client vs €25,000+ from traditional agencies.</p>
+<div class="mt-3 text-xs text-green-400 font-bold">Market: €5.46B consulting market</div>
+</div>
+</div>
+<!-- Revenue Model -->
+<div class="glass p-8">
+<h3 class="font-bold text-xl text-center mb-6">Revenue Model per Client</h3>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="text-center p-4 rounded-xl bg-orange-500/10 border border-orange-500/30">
+<div class="text-3xl font-black text-orange-400">€2,500</div>
+<div class="text-sm font-bold mt-1">Starter Package</div>
+<div class="text-xs text-slate-400 mt-2">Operations Dashboard + Basic Communication Hub + Setup & Training</div>
+</div>
+<div class="text-center p-4 rounded-xl bg-blue-500/10 border border-blue-500/30">
+<div class="text-3xl font-black text-blue-400">€5,000</div>
+<div class="text-sm font-bold mt-1">Professional Package</div>
+<div class="text-xs text-slate-400 mt-2">Full Dashboard Suite + Competitive Intelligence + Monthly Support</div>
+</div>
+<div class="text-center p-4 rounded-xl bg-purple-500/10 border border-purple-500/30">
+<div class="text-3xl font-black text-purple-400">€10,000</div>
+<div class="text-sm font-bold mt-1">Enterprise Package</div>
+<div class="text-xs text-slate-400 mt-2">Custom Integrations + AI Analytics + Ongoing Optimization + Priority Support</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- CTA -->
+<section class="py-20 px-6 text-center" style="background:linear-gradient(135deg,rgba(249,115,22,0.1),rgba(59,130,246,0.1))">
+<h2 class="text-4xl font-black mb-4">Ready to See It in Action?</h2>
+<p class="text-slate-400 max-w-xl mx-auto mb-8">Explore the live dashboards yourself. Every feature described in this manual is built and operational.</p>
+<div class="flex flex-wrap justify-center gap-4">
+<a href="AF-02-Operations-Dashboard.html" class="px-8 py-4 bg-orange-500 hover:bg-orange-600 text-white font-bold rounded-full transition">Open Operations Dashboard</a>
+<a href="AF-03-Communication-Hub.html" class="px-8 py-4 bg-blue-500 hover:bg-blue-600 text-white font-bold rounded-full transition">Open Communication Hub</a>
+<a href="AF-05-Business-Plan-Pitch.html" class="px-8 py-4 border border-slate-500 hover:border-orange-500 text-white font-semibold rounded-full transition">View Business Plan &amp; ROI</a>
+</div>
+</section>
+
+<!-- Footer -->
+<footer class="py-8 px-6 border-t border-slate-700/50">
+<div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+<div class="flex items-center gap-3"><div class="w-8 h-8 rounded-lg bg-gradient-to-br from-orange-500 to-orange-600 flex items-center justify-center font-black text-white text-sm">AF</div><span class="font-bold text-white">Avontuurfabriek Digital Transformation Suite</span></div>
+<p class="text-slate-500 text-sm">Investor Visual Manual v1.0 • February 2026 • Confidential</p>
+</div>
+</footer>
+</body>
+</html>
