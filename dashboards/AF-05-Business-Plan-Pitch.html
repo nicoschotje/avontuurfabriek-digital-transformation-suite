@@ -1,0 +1,240 @@
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1"></script>
+
+<div class="app">
+  <header>
+    <div class="logo"><span class="af-badge">AF</span> <div><strong>Avontuurfabriek</strong><small>Business Plan & Investment Pitch</small></div></div>
+    <div class="header-meta"><span class="badge green">ROI 250%+</span><span class="badge blue">Investment: &#8364;2,500</span><span class="date">Donderdag 19 Februari 2026</span></div>
+  </header>
+
+  <nav class="tab-nav">
+    <button class="tab active" data-tab="executive">&#128202; Executive Summary</button>
+    <button class="tab" data-tab="audit">&#127760; Website Audit</button>
+    <button class="tab" data-tab="deliverables">&#128230; Deliverables</button>
+    <button class="tab" data-tab="roi">&#128200; ROI Projecties</button>
+    <button class="tab" data-tab="market">&#127470;&#127469; PH Markt</button>
+    <button class="tab" data-tab="pba">&#128188; Bedrijfs Advies</button>
+    <button class="tab" data-tab="timeline">&#128197; Timeline</button>
+  </nav>
+
+  <main id="content">
+    <!-- EXECUTIVE SUMMARY -->
+    <section id="executive" class="tab-content active">
+      <div class="hero-pitch">
+        <h1>Van &#8364;2,500 naar &#8364;25,000+ waarde</h1>
+        <p class="subtitle">5 Premium SPA Dashboards die Avontuurfabriek transformeren van een bedrijf met informatieachterstand naar een data-gedreven marktleider</p>
+        <div class="hero-stats">
+          <div class="hero-stat"><span class="big orange">250%</span><small>ROI Jaar 1</small></div>
+          <div class="hero-stat"><span class="big green">5</span><small>Premium Producten</small></div>
+          <div class="hero-stat"><span class="big blue">4</span><small>Weken Levertijd</small></div>
+          <div class="hero-stat"><span class="big purple">10x</span><small>Waarde vs Kosten</small></div>
+        </div>
+      </div>
+
+      <h2>Het Probleem</h2>
+      <div class="problem-grid">
+        <div class="card problem"><span class="icon">&#128683;</span><h3>Geen Operationeel Overzicht</h3><p>Eigenaar in Filipijnen heeft geen realtime zicht op dagelijkse operaties in Loosdrecht</p></div>
+        <div class="card problem"><span class="icon">&#128225;</span><h3>Gefragmenteerde Communicatie</h3><p>WhatsApp, email, telefoon &#8212; geen centraal platform voor het management team</p></div>
+        <div class="card problem"><span class="icon">&#127760;</span><h3>Verouderde Website</h3><p>WordPress site uit 2018 &#8212; geen mobiele optimalisatie, lage conversie (2.1%)</p></div>
+        <div class="card problem"><span class="icon">&#128200;</span><h3>Geen Marktinzicht</h3><p>Geen systematisch concurrentie-analyse &#8212; blind voor marktverschuivingen</p></div>
+      </div>
+
+      <h2>De Oplossing</h2>
+      <div class="solution-grid">
+        <div class="card solution"><span class="num">01</span><h3>Premium Landing Pages</h3><p>Conversie-geoptimaliseerde website met Mix & Deal configurator</p><span class="price">&#8364;600</span></div>
+        <div class="card solution"><span class="num">02</span><h3>Operations Dashboard</h3><p>Dagelijks overzicht vanuit de Filipijnen &#8212; alles in &#233;&#233;n oogopslag</p><span class="price">&#8364;700</span></div>
+        <div class="card solution"><span class="num">03</span><h3>Communication Hub</h3><p>Centraal platform voor het volledige management team PH-NL</p><span class="price">&#8364;500</span></div>
+        <div class="card solution"><span class="num">04</span><h3>Competitive Intelligence</h3><p>Benelux marktanalyse met concurrenten-monitoring</p><span class="price">&#8364;400</span></div>
+        <div class="card solution"><span class="num">05</span><h3>Setup & Integratie</h3><p>Deployment, training en onboarding van het team</p><span class="price">&#8364;300</span></div>
+      </div>
+      <div class="total-bar"><span>Totale Investering</span><span class="total-amount">&#8364;2,500</span><span class="compare">vs &#8364;25,000-&#8364;50,000 bij traditioneel bureau</span></div>
+    </section>
+
+    <!-- WEBSITE AUDIT -->
+    <section id="audit" class="tab-content">
+      <h2>Website Audit &#8212; avontuurfabriek.nl</h2>
+      <div class="audit-comparison">
+        <div class="card audit-current">
+          <h3>&#128308; Huidige Website</h3>
+          <div class="audit-scores">
+            <div class="score-item"><span>UX Design</span><div class="score-bar"><div class="fill red" style="width:42%"></div></div><span>4.2/10</span></div>
+            <div class="score-item"><span>Mobiel</span><div class="score-bar"><div class="fill red" style="width:51%"></div></div><span>5.1/10</span></div>
+            <div class="score-item"><span>Snelheid</span><div class="score-bar"><div class="fill orange" style="width:58%"></div></div><span>5.8/10</span></div>
+            <div class="score-item"><span>SEO</span><div class="score-bar"><div class="fill orange" style="width:55%"></div></div><span>5.5/10</span></div>
+            <div class="score-item"><span>Conversie</span><div class="score-bar"><div class="fill red" style="width:21%"></div></div><span>2.1%</span></div>
+          </div>
+          <ul class="issues"><li>WordPress 2018 thema</li><li>Geen mobiele optimalisatie</li><li>Langzame laadtijd (4.2s)</li><li>Geen analytics tracking</li><li>Verouderde configurator UX</li></ul>
+        </div>
+        <div class="card audit-new">
+          <h3>&#9989; Premium SPA Redesign</h3>
+          <div class="audit-scores">
+            <div class="score-item"><span>UX Design</span><div class="score-bar"><div class="fill green" style="width:92%"></div></div><span>9.2/10</span></div>
+            <div class="score-item"><span>Mobiel</span><div class="score-bar"><div class="fill green" style="width:95%"></div></div><span>9.5/10</span></div>
+            <div class="score-item"><span>Snelheid</span><div class="score-bar"><div class="fill green" style="width:96%"></div></div><span>9.6/10</span></div>
+            <div class="score-item"><span>SEO</span><div class="score-bar"><div class="fill green" style="width:88%"></div></div><span>8.8/10</span></div>
+            <div class="score-item"><span>Conversie</span><div class="score-bar"><div class="fill green" style="width:58%"></div></div><span>5.8%</span></div>
+          </div>
+          <ul class="benefits"><li>Modern glassmorphism design</li><li>Mobile-first responsive</li><li>Sub-2s laadtijd</li><li>Ingebouwde analytics</li><li>Interactieve Mix & Deal</li></ul>
+        </div>
+      </div>
+      <div class="conversion-impact">
+        <h3>Conversie Impact Berekening</h3>
+        <div class="impact-grid">
+          <div class="impact-item"><span class="label">Huidig maandelijks verkeer</span><span class="val">12,000 bezoekers</span></div>
+          <div class="impact-item"><span class="label">Huidige conversie</span><span class="val red">2.1% = 252 leads/mnd</span></div>
+          <div class="impact-item"><span class="label">Nieuwe conversie</span><span class="val green">5.8% = 696 leads/mnd</span></div>
+          <div class="impact-item"><span class="label">Extra leads/maand</span><span class="val green">+444 leads</span></div>
+          <div class="impact-item"><span class="label">Gem. boeking waarde</span><span class="val">&#8364;1,080</span></div>
+          <div class="impact-item highlight"><span class="label">Extra omzet potentieel/jaar</span><span class="val green big">+&#8364;5,760/jaar</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DELIVERABLES -->
+    <section id="deliverables" class="tab-content">
+      <h2>5 Premium Producten</h2>
+      <div class="deliverable-cards">
+        <div class="card deliverable">
+          <div class="del-header"><span class="del-num">AF-01</span><span class="del-status live">LIVE</span></div>
+          <h3>Premium Landing Pages</h3>
+          <p>Volledig herontworpen Avontuurfabriek website met interactieve Mix & Deal configurator, activiteiten showcase, en conversie-geoptimaliseerde funnel.</p>
+          <div class="del-features"><span>Responsive Design</span><span>Mix & Deal Tool</span><span>50+ Activiteiten</span><span>SEO Ready</span></div>
+          <div class="del-value"><span>Investering: &#8364;600</span><span class="green">Waarde: &#8364;8,000+</span></div>
+        </div>
+        <div class="card deliverable">
+          <div class="del-header"><span class="del-num">AF-02</span><span class="del-status live">LIVE</span></div>
+          <h3>Operations Dashboard</h3>
+          <p>Dagelijks ochtend-briefing dashboard. Open vanuit de Filipijnen en zie alles wat gisteren gebeurde in Loosdrecht.</p>
+          <div class="del-features"><span>Omzet Tracking</span><span>Boekingen</span><span>Bezetting</span><span>KPI's</span></div>
+          <div class="del-value"><span>Investering: &#8364;700</span><span class="green">Waarde: &#8364;10,000+</span></div>
+        </div>
+        <div class="card deliverable">
+          <div class="del-header"><span class="del-num">AF-03</span><span class="del-status live">LIVE</span></div>
+          <h3>Communication Hub</h3>
+          <p>Centraal communicatieplatform met dagelijks verslag, berichten, taken, documenten en agenda. PH-NL tijdzone brug.</p>
+          <div class="del-features"><span>Dagverslag</span><span>Berichten</span><span>Taken Board</span><span>Documenten</span></div>
+          <div class="del-value"><span>Investering: &#8364;500</span><span class="green">Waarde: &#8364;6,000+</span></div>
+        </div>
+        <div class="card deliverable">
+          <div class="del-header"><span class="del-num">AF-04</span><span class="del-status live">LIVE</span></div>
+          <h3>Competitive Intelligence</h3>
+          <p>Benelux marktanalyse dashboard met 15+ concurrenten, SWOT analyse, radar charts en strategische aanbevelingen.</p>
+          <div class="del-features"><span>15+ Concurrenten</span><span>SWOT</span><span>Radar Charts</span><span>Strategie</span></div>
+          <div class="del-value"><span>Investering: &#8364;400</span><span class="green">Waarde: &#8364;5,000+</span></div>
+        </div>
+        <div class="card deliverable">
+          <div class="del-header"><span class="del-num">AF-05</span><span class="del-status current">DIT DASHBOARD</span></div>
+          <h3>Business Plan Pitch</h3>
+          <p>Dit dashboard &#8212; het volledige investerings-overzicht met ROI projecties, marktanalyse en implementatie roadmap.</p>
+          <div class="del-features"><span>ROI Analyse</span><span>Markt Data</span><span>Timeline</span><span>Pitch Ready</span></div>
+          <div class="del-value"><span>Investering: &#8364;300</span><span class="green">Waarde: &#8364;3,000+</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ROI -->
+    <section id="roi" class="tab-content">
+      <h2>ROI Projecties</h2>
+      <div class="roi-overview">
+        <div class="card roi-card big-roi"><h3>Jaar 1 ROI</h3><span class="roi-num">250%</span><p>&#8364;2,500 investering &#8594; &#8364;8,750+ waarde</p></div>
+        <div class="card roi-card"><h3>Besparing op Bureau</h3><span class="roi-num blue">90%</span><p>&#8364;2,500 vs &#8364;25,000+ traditioneel</p></div>
+        <div class="card roi-card"><h3>Break-even</h3><span class="roi-num green">6 wk</span><p>Terugverdiend binnen 6 weken</p></div>
+      </div>
+      <div class="chart-container"><h3>Waarde Opbouw per Product</h3><canvas id="roiChart"></canvas></div>
+      <div class="chart-container"><h3>Verwachte Omzet Impact (12 maanden)</h3><canvas id="revenueChart"></canvas></div>
+      <div class="value-breakdown">
+        <h3>Gedetailleerde Waarde Analyse</h3>
+        <table>
+          <thead><tr><th>Product</th><th>Investering</th><th>Jaar 1 Waarde</th><th>ROI</th></tr></thead>
+          <tbody>
+            <tr><td>Premium Landing Pages</td><td>&#8364;600</td><td class="green">&#8364;5,760</td><td>860%</td></tr>
+            <tr><td>Operations Dashboard</td><td>&#8364;700</td><td class="green">&#8364;1,200</td><td>71%</td></tr>
+            <tr><td>Communication Hub</td><td>&#8364;500</td><td class="green">&#8364;780</td><td>56%</td></tr>
+            <tr><td>Competitive Intelligence</td><td>&#8364;400</td><td class="green">&#8364;650</td><td>63%</td></tr>
+            <tr><td>Setup & Integratie</td><td>&#8364;300</td><td class="green">&#8364;360</td><td>20%</td></tr>
+            <tr class="total-row"><td><strong>TOTAAL</strong></td><td><strong>&#8364;2,500</strong></td><td class="green"><strong>&#8364;8,750</strong></td><td><strong>250%</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- PH MARKET -->
+    <section id="market" class="tab-content">
+      <h2>Philippine SMB Market Opportunity</h2>
+      <div class="market-hero">
+        <div class="card market-stat"><span class="big orange">1M+</span><small>MSMEs in Philippines</small></div>
+        <div class="card market-stat"><span class="big red">77%</span><small>Wil digitale tools</small></div>
+        <div class="card market-stat"><span class="big green">16%</span><small>Heeft momenteel tools</small></div>
+        <div class="card market-stat"><span class="big blue">$5M</span><small>Digital PINAS Budget</small></div>
+      </div>
+      <div class="chart-container"><h3>Philippine Digital Transformation Gap</h3><canvas id="phChart"></canvas></div>
+      <div class="card market-plan">
+        <h3>Schaalbaarheid: AF Dashboards &#8594; PH Product Lijn</h3>
+        <div class="scale-steps">
+          <div class="step"><span class="step-num">1</span><h4>Proof of Concept</h4><p>Avontuurfabriek als eerste klant &#8212; werkend product demonstreren</p></div>
+          <div class="step"><span class="step-num">2</span><h4>Template Systeem</h4><p>Dashboard templates maken voor verschillende industrieen</p></div>
+          <div class="step"><span class="step-num">3</span><h4>PH Lancering</h4><p>Aanpassen voor Filipijnse MSMEs: &#8369;15,000-&#8369;50,000 per klant</p></div>
+          <div class="step"><span class="step-num">4</span><h4>Schaal Op</h4><p>100+ klanten in jaar 1 &#8212; &#8369;5M+ omzet potentieel</p></div>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Addressable Market</h3>
+        <div class="market-numbers">
+          <div><span class="label">Target segment</span><span>SMEs met 10-200 werknemers</span></div>
+          <div><span class="label">Marktomvang</span><span>100,000+ bedrijven</span></div>
+          <div><span class="label">Prijsstelling</span><span>&#8369;15,000-&#8369;50,000 ($270-$900)</span></div>
+          <div><span class="label">Penetratie doel Jaar 1</span><span>100 klanten</span></div>
+          <div class="highlight"><span class="label">Revenue potentieel Jaar 1</span><span class="green big">$27,000-$90,000</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PBA -->
+    <section id="pba" class="tab-content">
+      <h2>Persoonlijk Bedrijfs Advies (PBA)</h2>
+      <div class="pba-intro card">
+        <h3>Van Avontuurfabriek Product naar Schaalbaar Bedrijfsmodel</h3>
+        <p>De dashboards die we bouwen voor Avontuurfabriek worden het fundament van een consulting productlijn voor Nederlandse en Belgische MKB-bedrijven.</p>
+      </div>
+      <div class="pba-stats">
+        <div class="card"><span class="big blue">&#8364;5.46B</span><small>NL Consulting Markt 2026</small></div>
+        <div class="card"><span class="big green">6.05%</span><small>CAGR MKB Advisory</small></div>
+        <div class="card"><span class="big purple">&#8364;1.82B</span><small>Addressable Market 2031</small></div>
+      </div>
+      <div class="chart-container"><h3>PBA Revenue Projectie (5 jaar)</h3><canvas id="pbaChart"></canvas></div>
+      <div class="card">
+        <h3>Product Pakketten</h3>
+        <div class="packages">
+          <div class="package"><h4>Starter</h4><span class="pkg-price">&#8364;2,500</span><ul><li>Premium Landing Page</li><li>Basis Operations Dashboard</li><li>Setup & Training</li></ul></div>
+          <div class="package featured"><h4>Professional</h4><span class="pkg-price">&#8364;5,000</span><ul><li>Alles van Starter</li><li>Communication Hub</li><li>Competitive Intelligence</li><li>Maandelijkse Support</li></ul></div>
+          <div class="package"><h4>Enterprise</h4><span class="pkg-price">&#8364;10,000</span><ul><li>Alles van Professional</li><li>Custom Integraties</li><li>AI-powered Analytics</li><li>Doorlopende Optimalisatie</li></ul></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TIMELINE -->
+    <section id="timeline" class="tab-content">
+      <h2>Implementatie Roadmap</h2>
+      <div class="timeline">
+        <div class="tl-item done"><div class="tl-marker"></div><div class="tl-content"><span class="tl-week">Week 1</span><h3>Foundation & Landing Pages</h3><p>Design systeem opzetten, AF-01 Premium Landing Pages bouwen met Mix & Deal configurator</p><span class="tl-status done">Afgerond</span></div></div>
+        <div class="tl-item done"><div class="tl-marker"></div><div class="tl-content"><span class="tl-week">Week 2</span><h3>Operations & Communication</h3><p>AF-02 Operations Dashboard en AF-03 Communication Hub ontwikkelen en testen</p><span class="tl-status done">Afgerond</span></div></div>
+        <div class="tl-item done"><div class="tl-marker"></div><div class="tl-content"><span class="tl-week">Week 3</span><h3>Intelligence & Strategy</h3><p>AF-04 Competitive Intelligence dashboard met Benelux marktdata en AF-05 Business Plan</p><span class="tl-status done">Afgerond</span></div></div>
+        <div class="tl-item active"><div class="tl-marker"></div><div class="tl-content"><span class="tl-week">Week 4</span><h3>Integratie & Lancering</h3><p>Master Hub pagina, cross-linking, responsieve tests, eigenaar presentatie en teamtraining</p><span class="tl-status active">In Uitvoering</span></div></div>
+      </div>
+      <div class="card risk-section">
+        <h3>Risico Mitigatie</h3>
+        <div class="risk-grid">
+          <div class="risk"><span class="risk-level low">LAAG</span><h4>Investering</h4><p>&#8364;2,500 vs &#8364;25,000+ traditioneel &#8212; minimaal financieel risico</p></div>
+          <div class="risk"><span class="risk-level low">LAAG</span><h4>Vendor Lock-in</h4><p>Standaard HTML/CSS/JS &#8212; geen afhankelijkheid van platforms</p></div>
+          <div class="risk"><span class="risk-level low">LAAG</span><h4>Technisch</h4><p>Bewezen technologieen, geen experimentele frameworks</p></div>
+          <div class="risk"><span class="risk-level low">LAAG</span><h4>Terugbetaling</h4><p>Geld-terug optie eerste 2 weken als niet tevreden</p></div>
+        </div>
+      </div>
+      <div class="cta-section">
+        <h2>Klaar om te Investeren?</h2>
+        <p>5 premium dashboards. &#8364;2,500. 250% ROI. 4 weken.</p>
+        <button class="cta-btn">Start het Project &#8594;</button>
+      </div>
+    </section>
+  </main>
+</div>
